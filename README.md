@@ -7,7 +7,7 @@ Para ejecutar por primera vez
 4. Creamos un ambiente virtual: python -m venv venv
 5. Activamos el ambiente: source venv/Scripts/activate
 6. Instalamos Django: pip install django
-7. Creamos las migraciones: python manage.py makemigrations
+7. Creamos las migraciones: python manage.py makemigrations asistente_diagnostico
 8. Migramos la base de datos: python manage.py migrate
 9. Creamos un superusuario: python manage.py createsuperuser (llenamos los datos que nos pide)
 10. Corremos el proyecto: python manage.py runserver
