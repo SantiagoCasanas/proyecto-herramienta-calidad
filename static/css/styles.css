@@ -1,0 +1,101 @@
+/* static/css/styles.css */
+body {
+    height: 110dvh;
+    width: 80 dvh; 
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url(fondo.jpeg);
+    background-size: cover; 
+    font-family: Arial, sans-serif;
+    
+
+} 
+
+/* .image {
+
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+    url(importancia-calidad-agua-de-riego.jpeg);
+    background-size: cover;
+    height: 400px;
+   
+} }*/
+
+.motivacion{
+    align-items: center;
+    background-color: aliceblue;
+
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background:#6e6e6e;
+    opacity: 70%;
+   
+}
+
+.flex{
+    display: flex;
+    align-items:center;
+}
+
+.navbar {
+    justify-content: space-between;
+    color: rgb(255, 255, 255);
+}
+
+.nav-links {
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar a {
+    padding: 20px o;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+
+.introduccion{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 20px; 
+    
+    
+}
+
+
+.introduccion .contenido {
+    color: rgb(255, 255, 255);
+    
+}
+
+.introduccion .contenido h1{
+    text-shadow: 5px 5px #000000;
+    font-size: 3rem;
+    max-width: 600px;
+}
+
+.introduccion .contenido p{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    max-width: 700px;
+}
+
+button {
+    background-color: #4e0d0d;
+    font-size: 1rem;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border-color: aliceblue;
+}
