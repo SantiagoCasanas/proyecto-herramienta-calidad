@@ -5,7 +5,7 @@ Para ejecutar por primera vez
 - git clone git@github.com:SantiagoCasanas/proyecto-herramienta-calidad.git
 3. Abrir una terminal de gitbash sobre la carpeta generada (clic derecho -> abrir gitbash)
 4. Creamos un ambiente virtual: python -m venv venv
-5. Activamos el ambiente: Source venv/Scripts/activate
+5. Activamos el ambiente: source venv/Scripts/activate
 6. Instalamos Django: pip install django
 7. Creamos las migraciones: python manage.py makemigrations
 8. Migramos la base de datos: python manage.py migrate
