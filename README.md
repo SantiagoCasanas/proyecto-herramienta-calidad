@@ -1,4 +1,4 @@
-###Proyecto congreso
+# Proyecto congreso
 Para ejecutar por primera vez
 1. Clonar el proyecto en el escritorio usando git bash.
 - git clone https://github.com/SantiagoCasanas/proyecto-herramienta-calidad.git
