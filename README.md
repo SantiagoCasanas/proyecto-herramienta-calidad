@@ -1,6 +1,6 @@
 # Proyecto congreso
 Para ejecutar por primera vez
-1. Clonar el proyecto en el escritorio usando git bash.
+1. Clonar el proyecto en el escritorio usando una terminal de gitbash (clic derecho -> abrir gitbash) con uno de los siguientes comandos
 - git clone https://github.com/SantiagoCasanas/proyecto-herramienta-calidad.git
 - git clone git@github.com:SantiagoCasanas/proyecto-herramienta-calidad.git
 3. Abrir una terminal de gitbash sobre la carpeta generada (clic derecho -> abrir gitbash)
