@@ -1,0 +1,33 @@
+/* Aplica estilo a la tabla */
+table {
+    width: 80%; /* Ajusta el ancho de la tabla */
+    margin: 20px auto; /* Centra la tabla en la página */
+    border-collapse: collapse; /* Colapsa los bordes */
+}
+
+/* Estilo para las celdas del encabezado */
+th, td {
+    border: 1px solid #000000; /* Borde de la tabla */
+    padding: 8px; /* Espaciado interno en las celdas */
+    text-align: center; /* Centra el texto en las celdas */
+}
+
+/* Fondo y estilo para el encabezado */
+th {
+    background-color: #005e00; /* Color de fondo para el encabezado */
+    font-weight: bold; /* Negrita para el encabezado */
+}
+
+/* Alternar colores de filas */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo para filas pares */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Color de fondo para filas impares */
+}
+
+/* Estilo para la fila cuando no hay datos */
+tbody tr td {
+    color: #999999; /* Color de texto para filas sin datos */
+}

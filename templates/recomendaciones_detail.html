@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recomendaciones</title>
+</head>
+<body>
+    <h1>Recomendaciones Generales de Infraestructura</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Parámetro</th>
+                <th>Valor</th>
+                <th>Valor Mínimo</th>
+                <th>Valor Máximo</th>
+                <th>Recomendación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recomendacion in recomendaciones %}
+                <tr>
+                    <td>{{ recomendacion.parametro }}</td>
+                    <td>{{ recomendacion.valor }}</td>
+                    <td>{{ recomendacion.valor_minimo }}</td>
+                    <td>{{ recomendacion.valor_maximo }}</td>
+                    <td>{{ recomendacion.recomendacion }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

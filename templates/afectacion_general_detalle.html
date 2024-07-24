@@ -6,18 +6,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Afectación General</title>
-    <link rel="stylesheet" href="{% static 'css/styles1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/resultado.css' %}">
 </head>
 <body>
-    <h1 class= "h1">Formulario de Afectación General</h1>
+    <h1 class= "h1">Formulario de Afectación a la infraestructura</h1>
     
-    <form method="post" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="button-container">
-            <button type="submit">Enviar</button>
-        </div>
-    </form>
+    <h3 class= "h3">la calidad del agua, especialmente en términos de la presencia de sales como los carbonatos de sodio, 
+        tiene un impacto significativo en la infraestructura de riego. La obstrucción de boquillas y la formación de incrustaciones 
+        en tuberías son problemas comunes que requieren atención para asegurar un sistema de riego eficiente y duradero. </h3>
 
     {% if form_data %}
         <h2>Valores del Formulario</h2>
@@ -27,9 +23,8 @@
             {% endfor %}
         </ul>
     {% endif %}
-    
 
-<!--     {% block content %}
+    {% block content %}
     <table>
         <thead>
             <tr>
@@ -56,8 +51,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% endblock %} -->
-   
+    {% endblock %}
 
 
 </body>

@@ -1,0 +1,63 @@
+body{
+    display:flexbox;
+    
+    min-height: 100vh;
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+    url("/static/css/asistente_diagnostico/images/fondo.jpeg");
+    background-size: cover; 
+    font-family: Arial, sans-serif;
+    color: aliceblue;
+}
+
+.h1{
+    text-align: center;
+    
+}
+
+
+form {
+
+    
+    width: 400px; /* Ancho del formulario */
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding: 50px; /* Espacio interno del formulario */
+    border: 2px solid rgb(255, 255, 255, .2); /* Borde de 2px de color azul */
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra (opcional) */
+    background-color: transparent; 
+    border-radius: 12px;
+    backdrop-filter: blur(1.8px);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra el botón horizontalmente */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background:#6e6e6e;
+    opacity: 70%;
+   
+}
+
+button {
+    background-color: #4e0d0d;
+    font-size: 1rem;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    border-color: aliceblue;
+    border-radius: 12px;
+    text-align: center;
+    align-items: center;
+    
+}
