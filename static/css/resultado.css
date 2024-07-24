@@ -1,33 +1,67 @@
-/* Aplica estilo a la tabla */
+.panel-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto; /* Espacio alrededor del panel */
+}
+
+.panel-heading,
+.panel-body {
+    width: 900px; /* Ancho del panel */
+}
+
+.panel-heading {
+    cursor: pointer;
+    background-color: #005e00; /* Color verde oscuro para el fondo */
+    color: #ffffff; /* Letras en blanco */
+    padding: 8px 15px; /* Ajusta el tamaño del padding */
+    border-radius: 8px 8px 0 0; /* Ajusta el radio de los bordes */
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    margin-bottom: 5px; /* Espacio debajo del encabezado */
+}
+
+.panel-body {
+    display: none;
+    padding: 10px 15px; /* Ajusta el tamaño del padding */
+    border: 1px solid #005e00; /* Borde del panel */
+    border-top: none;
+    color: #000000; /* Texto negro */
+    border-radius: 0 0 8px 8px; /* Ajusta el radio de los bordes */
+    font-size: 14px; /* Ajusta el tamaño de la fuente */
+    background-color: #e6f9e6; /* Fondo verde muy claro para el cuerpo del panel */
+}
+
+.panel-body.show {
+    display: block;
+}
+
 table {
-    width: 80%; /* Ajusta el ancho de la tabla */
-    margin: 20px auto; /* Centra la tabla en la página */
-    border-collapse: collapse; /* Colapsa los bordes */
+    width: 100%; /* Ajusta el ancho de la tabla */
+    margin: 0 auto; /* Centra la tabla en el panel */
+    border-collapse: collapse;
 }
 
-/* Estilo para las celdas del encabezado */
 th, td {
-    border: 1px solid #000000; /* Borde de la tabla */
-    padding: 8px; /* Espaciado interno en las celdas */
-    text-align: center; /* Centra el texto en las celdas */
+    border: 1px solid #000000;
+    padding: 6px; /* Ajusta el tamaño del padding */
+    text-align: center;
 }
 
-/* Fondo y estilo para el encabezado */
 th {
-    background-color: #005e00; /* Color de fondo para el encabezado */
-    font-weight: bold; /* Negrita para el encabezado */
+    background-color: #005e00;
+    color: white;
+    font-weight: bold;
 }
 
-/* Alternar colores de filas */
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Color de fondo para filas pares */
+    background-color: #f9f9f9;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* Color de fondo para filas impares */
+    background-color: #ffffff;
 }
 
-/* Estilo para la fila cuando no hay datos */
 tbody tr td {
-    color: #999999; /* Color de texto para filas sin datos */
+    color: #999999;
 }

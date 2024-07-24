@@ -16,31 +16,54 @@ def inicio(request):
     return render(request, 'inicio.html')
 
 
-class AfectacionGeneralView(FormView):
+class ConsultarAfectacionGeneralView(FormView):
     template_name = "afectacion.html"
     form_class = AfectacionGeneralForm
-    success_url = reverse_lazy('asistente_diagnostico:afectacion-general')
+    success_url = reverse_lazy('afectacion-general')
 
-    def form_valid(self, form):
-        # Extraer los parámetros del formulario
-        parametros = form.cleaned_data
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        #guarda los datos de contexto para el html
+        if hasattr(self, 'afectacion_infraestructura'):
+            context['afectacion_infraestructura'] = self.afectacion_infraestructura
+            #context['afectacion_segunda_tabla'] = self.afectacion_segunda_tabla
+            context['valor_indice'] = self.valor_indice
+            #context['indice_helier'] = self.indice_helier
+        
+        return context
 
-        # Obtener el valor del índice basado en los valores del formulario
-        valor_indice = obtener_recomendaciones_generales_infraestructura(parametros)
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            parametros = form.cleaned_data
+            context = self.get_context_data()
 
-        # Obtener datos del modelo AfectacionGeneral correspondientes al valor del índice
-        afectaciones = AfectacionGeneral.objects.filter(valor_minimo__lte=valor_indice, valor_maximo__gte=valor_indice)
+            ###para la primera tabla
+            self.valor_indice = obtener_recomendaciones_generales_infraestructura(parametros)
+            self.afectacion_infraestructura = AfectacionGeneral.obtener_afectacion(self.valor_indice)
+            context['afectacion_infraestructura'] = self.afectacion_infraestructura
+            context['valor_indice'] = self.valor_indice
+            
+            #### para langelier
+            #self.valor_indice_helier = obtener_indice_helier(parametros)
+            #self.indice_helier = Modelo.objects.filter(parametro="Índice de Langelier", valor_minimo__lte=self.valor_indice_helier, valor_maximo__gte=self.valor_indice_helier).first()
+            #context['indice_helier'] = self.indice_helier
+            
+            ###para demas parametros
+            #self.ph_valor = parametros["ph"]
+            #self.ph = Modelo.objects.filter(parametro="PH", valor_minimo__lte=self.ph_valor, valor_maximo__gte=self.ph_valor).first()
+            ##para cada parametro
 
-        # Pasar datos al contexto y redirigir a la vista de detalle
-        context = self.get_context_data()
-        context['valor_indice'] = valor_indice
-        context['afectaciones'] = afectaciones
+           
+            return self.render_to_response(context)
+        else:
+            return self.form_invalid(form)
 
-        # Guardar los datos en la sesión para usarlos en la vista de detalle
-        self.request.session['valor_indice'] = valor_indice
-        self.request.session['afectaciones'] = list(afectaciones.values())
 
-        return super().form_valid(form)
+
+
+
     
 class AfectacionGeneralDetalleView(TemplateView):
     template_name = "afectacion_general_detalle.html"
