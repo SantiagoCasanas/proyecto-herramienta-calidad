@@ -18,40 +18,82 @@
             <button type="submit">Enviar</button>
         </div>
     </form>
-    {% if afectacion_infraestructura is not None %}
+
+    {% if afectacion_infraestructura is not None or afectaciones_infraestructura_dos %}
         <div class="panel">
-            <div class="panel-heading" onclick="togglePanel()">
-                Afectación a la infraestructura
+            <div class="panel-heading" onclick="togglePanel('panel')">
+                Resultados de Afectación
             </div>
-            <div class="panel-body">
-                <h3 class="h3">
-                    La calidad del agua, especialmente en términos de la presencia de sales como los carbonatos de sodio, 
-                    tiene un impacto significativo en la infraestructura de riego. La obstrucción de boquillas y la formación de incrustaciones 
-                    en tuberías son problemas comunes que requieren atención para asegurar un sistema de riego eficiente y duradero.
-                </h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Valor del Índice</th>
-                            <th>Valor Mínimo</th>
-                            <th>Valor Máximo</th>
-                            <th>Nivel de Afectación</th>
-                            <th>Recomendaciones del Modelo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ valor_indice }}</td>
-                            <td>{{ afectacion_infraestructura.valor_minimo }}</td>
-                            <td>{{ afectacion_infraestructura.valor_maximo }}</td>
-                            <td>{{ afectacion_infraestructura.nivel_afectacion }}</td>
-                            <td>{{ afectacion_infraestructura.recomendacion }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div id="panel" class="panel-body">
+                {% if afectacion_infraestructura is not None %}
+                    <h2>Afectación a la Infraestructura</h2>
+                    <h3 class="h3">
+                        La calidad del agua, especialmente en términos de la presencia de sales como los carbonatos de sodio, 
+                        tiene un impacto significativo en la infraestructura de riego. La obstrucción de boquillas y la formación de incrustaciones 
+                        en tuberías son problemas comunes que requieren atención para asegurar un sistema de riego eficiente y duradero.
+                    </h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Valor del Índice</th>
+                                <th>Valor Mínimo</th>
+                                <th>Valor Máximo</th>
+                                <th>Nivel de Afectación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ valor_indice }}</td>
+                                <td>{{ afectacion_infraestructura.valor_minimo }}</td>
+                                <td>{{ afectacion_infraestructura.valor_maximo }}</td>
+                                <td>{{ afectacion_infraestructura.nivel_afectacion }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endif %}
+
+                {% if afectaciones_infraestructura_dos %}
+                    <h2>Segunda Tabla de Resultados</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parámetro</th>
+                                <th>Valor Ingresado</th>
+                                <th>Valor Mínimo</th>
+                                <th>Valor Máximo</th>
+                                <th>Nivel de Afectación</th>
+                                <th>Recomendación Física</th>
+                                <th>Recomendación Química</th>
+                                <th>Recomendación Biológica</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                <tr>
+                                    <td>{{ item.parametro }}</td>
+                                    <td>{{ item.valor_ingresado }}</td>
+                                    <td>{{ item.afectacion.valor_minimo }}</td>
+                                    <td>{{ item.afectacion.valor_maximo }}</td>
+                                    <td>{{ item.afectacion.nivel_afectacion }}</td>
+                                    <td>{{ item.afectacion.recomendacion_fisica }}</td>
+                                    <td>{{ item.afectacion.recomendacion_quimica }}</td>
+                                    <td>{{ item.afectacion.recomendacion_biologica }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
             </div>
         </div>
     {% endif %}
+
+    {% if valor_x is not None %}
+
+        <p>valor de sulfato de calcio: {{ valor_x }} </p>
+
+    {% endif %}
+
+
     
     <script>
         function togglePanel() {

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
 </head>
 <body>
     
@@ -22,11 +22,12 @@
 
     <section class="introduccion">
         <div class="contenido">
+            
 
             <h1>  Nombre: El riego inteligente comienza con la calidad de agua </h1>
             <p>
-                Esta herramienta esta pensada para apoyar la toma de decisiones en el sector agricola 
-                a la hora de regar. 
+                Esta herramienta esta pensada para apoyar la toma de decisiones en el sector agrícola 
+                a la hora del riego. 
             </p>           
             <br>
             <a href="afectacion-general">
@@ -36,9 +37,20 @@
 
     </section>
 
-    <section class="motivacion" id="motivacion">
-        <p> Esta herramienta que permite evaluar de forma rápida e integral la calidad del agua para el riego, con el fin de identificar posibles afectaciones en el suelo, los cultivos, la salud humana e infraestructura de riego. Todo lo anterior con base en parámetros clasificados y categorizados que han sido señalados en lineamientos internacionales y nacionales, en conjunto con resultados de investigaciones a nivel mundial. La herramienta incluye una serie de recomendaciones para la práctica de riego y el tratamiento del agua utilizada en la agricultura. </p>
-    </section>
+    <section class="motivacion-container">
+        <div class="motivacion">
+            <img src="{% static 'css/asistente_diagnostico/images/drop.jpg' %}" alt="Descripción de la imagen" class="imagen-motivacion">
+            <div class="texto-motivacion">
+                <h3>Evaluación integral de la calidad del agua de riego y recomendaciones prácticas</h3><br>
+                
+                <p>Esta herramienta permite evaluar de forma rápida e integral la calidad del agua para 
+                el riego, con el fin de identificar posibles afectaciones en el suelo, los cultivos, la salud humana
+                e infraestructura de riego. Todo lo anterior con base en parámetros clasificados y categorizados que 
+                han sido señalados en lineamientos internacionales y nacionales, en conjunto con resultados 
+                de investigaciones a nivel mundial. La herramienta incluye una serie de recomendaciones para la práctica 
+                de riego y el tratamiento del agua utilizada en la agricultura.</p>
+            </div>
+        </div>
         
 </body>
 

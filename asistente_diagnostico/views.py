@@ -1,15 +1,19 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy,reverse
 from django.views.generic.edit import FormView
-from django.views.generic import TemplateView
+#from django.views.generic import TemplateView
+
+from .models import AfectacionGeneral
+from .models import AfectacionDetalladaInfraestructura
+from .forms import AfectacionGeneralForm
+
 #from django.views.generic.detail import DetailView
 from .funciones import obtener_recomendaciones_generales_infraestructura
+from .funciones import calcular_valor_x
 #from django.shortcuts import render, get_object_or_404
 #from django.views import View
 
 
-from .models import AfectacionGeneral
-from .forms import AfectacionGeneralForm
 
 
 def inicio(request):
@@ -28,9 +32,13 @@ class ConsultarAfectacionGeneralView(FormView):
         if hasattr(self, 'afectacion_infraestructura'):
             context['afectacion_infraestructura'] = self.afectacion_infraestructura
             #context['afectacion_segunda_tabla'] = self.afectacion_segunda_tabla
+            
             context['valor_indice'] = self.valor_indice
             #context['indice_helier'] = self.indice_helier
-        
+
+            #segunda tabla
+            context['afectacion_infraestructura_dos'] = self.afectacion_infraestructura_dos
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -39,12 +47,40 @@ class ConsultarAfectacionGeneralView(FormView):
             parametros = form.cleaned_data
             context = self.get_context_data()
 
+            #########INFRAESTRUCTURA
+
             ###para la primera tabla
             self.valor_indice = obtener_recomendaciones_generales_infraestructura(parametros)
             self.afectacion_infraestructura = AfectacionGeneral.obtener_afectacion(self.valor_indice)
             context['afectacion_infraestructura'] = self.afectacion_infraestructura
             context['valor_indice'] = self.valor_indice
             
+            ###para la segunda tabla 
+
+            self.afectaciones_infraestructura_dos = []
+
+            for parametros, valor in parametros.items():
+                if valor is not None:  # Verifica que el valor no sea None
+                    afectacion = AfectacionDetalladaInfraestructura.obtener_afectacion_infraestructura(parametros, valor)
+                    if afectacion:
+                        self.afectaciones_infraestructura_dos.append({
+                            'parametro': parametros,
+                            'valor_ingresado': valor,
+                            'afectacion': afectacion
+                        })
+            context['afectaciones_infraestructura_dos'] = self.afectaciones_infraestructura_dos
+
+            #########SUELO 
+
+            #para la primera tabla
+ 
+            #para la recomendacion sodificacion
+
+            """  self.valor_x = calcular_valor_x(parametros)  # Llamar a la nueva función
+            context['valor_x'] = self.valor_x 
+            """
+
+
             #### para langelier
             #self.valor_indice_helier = obtener_indice_helier(parametros)
             #self.indice_helier = Modelo.objects.filter(parametro="Índice de Langelier", valor_minimo__lte=self.valor_indice_helier, valor_maximo__gte=self.valor_indice_helier).first()
@@ -64,7 +100,12 @@ class ConsultarAfectacionGeneralView(FormView):
 
 
 
-    
+
+
+
+""""
+
+#######################
 class AfectacionGeneralDetalleView(TemplateView):
     template_name = "afectacion_general_detalle.html"
 
@@ -75,7 +116,11 @@ class AfectacionGeneralDetalleView(TemplateView):
         return context
 
 
-""""
+
+
+
+
+
 
 Lo entrega abajo del formulario
 class AfectacionGeneralView(FormView):
@@ -160,76 +205,4 @@ class AfectacionGeneralView(FormView):
         # Continuar con el flujo normal de form_valid
         return super().form_valid(form)
 
-
-
-
-
-class AfectacionGeneralView(FormView):
-    template_name = "afectacion.html"
-    form_class = AfectacionGeneralForm
-    success_url = reverse_lazy('asistente_diagnostico:afectacion-general')
-
-    def form_valid(self, form):
-        # Guardar los valores del formulario en el contexto
-        context = self.get_context_data(form=form)
-        context['form_data'] = form.cleaned_data
-
-        parametros= form.cleaned_data
-
-
-        #valor_referencia = form.cleaned_data['ph']
-        #print(f'El valor de referencia es: {AfectacionGeneral.obtener_afectacion(valor_referencia)}')
-
-        recomendaciones = obtener_recomendaciones_generales_infraestructura(parametros)
-        context['recomendaciones'] = recomendaciones
-
-        
-        # Renderizar el template con los valores del formulario
-        return self.render_to_response(context)
-
-
-
-
-
-class AfectacionGeneralView(FormView):
-    template_name = "afectacion.html"
-    form_class = AfectacionGeneralForm
-    success_url = reverse_lazy('asistente_diagnostico:afectacion-general')
-
-    def form_valid(self, form):
-        #accedo a valores registrados por el usuario
-        valor_referencia = form.cleaned_data['ph']
-        print(valor_referencia)
-        
-        print(f'El valor de referencia es: {AfectacionGeneral.obtener_afectacion(valor_referencia)}')
-        funcion_maria(valor_referencia)
-        return super().form_valid(form)
-
-
-
-#lo agregué
-class ResultadosView(TemplateView):
-    template_name = 'prueba.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['valor_referencia'] = self.request.session.get('valor_referencia', 'No disponible')
-        context['afectacion'] = self.request.session.get('afectacion', 'No disponible')
-        
-        # Limpiar los datos de la sesión después de mostrar
-        self.request.session.pop('valor_referencia', None)
-        self.request.session.pop('afectacion', None)
-        
-        return context
-
-
-
-def funcion_maria(valores):
-    pass
-
-
-class AfectacionGeneralDetailView(DetailView):
-    model = AfectacionGeneral
-    template_name = 'afectacion_general_detalle.html'
-    context_object_name = 'afectacion_general_detalle'
 """

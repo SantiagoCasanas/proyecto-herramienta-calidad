@@ -17,12 +17,11 @@ body{
 
 
 form {
-
     
     width: 400px; /* Ancho del formulario */
     margin: 0 auto; /* Centrar horizontalmente */
     padding: 50px; /* Espacio interno del formulario */
-    border: 2px solid rgb(255, 255, 255, .2); /* Borde de 2px de color azul */
+    border: 2px solid rgb(255, 255, 255, .2); /* Borde de 2px de color gris */
     border-radius: 10px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra (opcional) */
     background-color: transparent; 

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} 
 
 body{
     font-family: Arial, sans-serif;
@@ -27,12 +27,12 @@ body{
     height: 400px;
    
 } }*/
-
+/*
 .motivacion{
     align-items: center;
     background-color: aliceblue;
 
-}
+}*/
 
 header {
     position: fixed;
@@ -48,7 +48,7 @@ header {
 .flex{
     display: flex;
     align-items:center;
-}
+} 
 
 .navbar {
     justify-content: space-between;
@@ -66,7 +66,6 @@ header {
     color: rgb(255, 255, 255);
     text-decoration: none;
 }
-
 
 
 .introduccion .contenido {
@@ -100,9 +99,52 @@ button {
     border-radius: 10px;
 }
 
-.motivacion p{
+/* .motivacion p{
 
     text-transform: uppercase;
     font-size: 0.938rem;
     margin: 0.5rem 0 1.1rem;
+} */
+
+ /* Estilos para la sección */
+
+
+.motivacion-container {
+    display: flex; /* Habilita flexbox para la alineación */
+    align-items: center; /* Centra verticalmente los elementos */
+    /*justify-content: center;*/
+    padding: 20px; /* Espaciado interno */
+    background-color: #f9f9f9; /* Color de fondo de la sección */
+}
+
+.motivacion {
+    display: flex; /* Habilita flexbox en el contenedor de motivación */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+}
+
+.imagen-motivacion {
+    width: 300px; /* Ancho de la imagen */
+    height: 300px; /* Alto de la imagen */
+    border-radius: 800px; /* Borde redondeado (mitad del ancho para un círculo) */
+    /*margin-right: 1px;  Espacio entre la imagen y el texto */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien */
+    margin-left: 150px;
+    
+}
+
+.texto-motivacion h3{
+
+    text-align: center;
+    
+}
+
+.texto-motivacion {
+    max-width: 500px; /* Ancho máximo del texto */
+    padding: 20px; /* Espacio interno */
+    border-radius: 8px; /* Bordes redondeados */
+    /* Ancho máximo del contenedor */
+    background-color: #f9f9f9; /* Color de fondo */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    margin-left: 280px;
+    text-align: justify;
 }
