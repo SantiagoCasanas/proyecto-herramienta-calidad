@@ -4,101 +4,627 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Afectación General</title>
     <link rel="stylesheet" href="{% static 'css/styles1.css' %}">
     <link rel="stylesheet" href="{% static 'css/resultado.css' %}">
 </head>
 <body>
-    <h1 class="h1">Formulario de Afectación General</h1>
+    <header>
+        <h2 class="logo">Calidad</h2>
+        <ul class="nav-links">
+            <li><a href="#about-us">¿Quiénes somos?</a></li>
+        </ul>
+    </header>
+
+    <!-- <header>
+        <nav class="navbar container flex">
+            <h2 class="logo">Calidad</h2>
+            <ul class="nav-links flex">
+                <li><a href="#about us">¿Quienes somos?</a></li>
+            </ul>
+        </nav>
+    </header> -->
+
+    <section class="inicio_form">
+        <h1 >Obtén tu <span class="resaltar">diagnóstico</span> de calidad del agua en un solo clic</h1>
+        <p>Ingresa los datos disponibles sobre la calidad de tu agua para conocer los posibles peligros asociados 
+            a la actividad de riego. 
+        </p>
+
+    </section>
+
+    <section class="formulario">
+            
+            <form method="post">
+
+                {% csrf_token %}
+                {{ form.as_p }} 
+
+                <div class="button-container">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form> 
+
+    </section>
     
-    <form method="post">
+
+    <!-- <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="container mt-4">
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <div class="panel p-3 border bg-light">
+                        <h3>Panel 1</h3>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.fuentes_abastecimiento.label_tag }}
+                            {{ form.fuentes_abastecimiento }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.ph.label_tag }}
+                            {{ form.ph }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.conductividad_electrica.label_tag }}
+                            {{ form.conductividad_electrica }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.calcio.label_tag }}
+                            {{ form.calcio }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.sodio.label_tag }}
+                            {{ form.sodio }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.magnesio.label_tag }}
+                            {{ form.magnesio }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.potasio.label_tag }}
+                            {{ form.potasio }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.carbonatos.label_tag }}
+                            {{ form.carbonatos }}
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4">
+                    <div class="panel p-3 border bg-light">
+                        <h3>Panel 2</h3>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.bicarbonato.label_tag }}
+                            {{ form.bicarbonato }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.cloro.label_tag }}
+                            {{ form.cloro }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.sulfatos.label_tag }}
+                            {{ form.sulfatos }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.solidos_disueltos.label_tag }}
+                            {{ form.solidos_disueltos }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.solidos_solubles.label_tag }}
+                            {{ form.solidos_solubles }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.hierro.label_tag }}
+                            {{ form.hierro }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.manganeso.label_tag }}
+                            {{ form.manganeso }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.nitrogeno.label_tag }}
+                            {{ form.nitrogeno }}
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4">
+                    <div class="panel p-3 border bg-light">
+                        <h3>Panel 3</h3>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.amonio.label_tag }}
+                            {{ form.amonio }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.temperatura.label_tag }}
+                            {{ form.temperatura }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.alcalinidad.label_tag }}
+                            {{ form.alcalinidad }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.dureza.label_tag }}
+                            {{ form.dureza }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.lluvia_total_anual.label_tag }}
+                            {{ form.lluvia_total_anual }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.textura.label_tag }}
+                            {{ form.textura }}
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            {{ form.tolerancia_cultivo.label_tag }}
+                            {{ form.tolerancia_cultivo }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="button-container">
-            <button type="submit">Enviar</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
-    </form>
-
-    {% if afectacion_infraestructura is not None or afectaciones_infraestructura_dos %}
-        <div class="panel">
-            <div class="panel-heading" onclick="togglePanel('panel')">
-                Resultados de Afectación
-            </div>
-            <div id="panel" class="panel-body">
-                {% if afectacion_infraestructura is not None %}
-                    <h2>Afectación a la Infraestructura</h2>
-                    <h3 class="h3">
-                        La calidad del agua, especialmente en términos de la presencia de sales como los carbonatos de sodio, 
-                        tiene un impacto significativo en la infraestructura de riego. La obstrucción de boquillas y la formación de incrustaciones 
-                        en tuberías son problemas comunes que requieren atención para asegurar un sistema de riego eficiente y duradero.
-                    </h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Valor del Índice</th>
-                                <th>Valor Mínimo</th>
-                                <th>Valor Máximo</th>
-                                <th>Nivel de Afectación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ valor_indice }}</td>
-                                <td>{{ afectacion_infraestructura.valor_minimo }}</td>
-                                <td>{{ afectacion_infraestructura.valor_maximo }}</td>
-                                <td>{{ afectacion_infraestructura.nivel_afectacion }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                {% endif %}
-
-                {% if afectaciones_infraestructura_dos %}
-                    <h2>Segunda Tabla de Resultados</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Parámetro</th>
-                                <th>Valor Ingresado</th>
-                                <th>Valor Mínimo</th>
-                                <th>Valor Máximo</th>
-                                <th>Nivel de Afectación</th>
-                                <th>Recomendación Física</th>
-                                <th>Recomendación Química</th>
-                                <th>Recomendación Biológica</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in afectaciones_infraestructura_dos %}
-                                <tr>
-                                    <td>{{ item.parametro }}</td>
-                                    <td>{{ item.valor_ingresado }}</td>
-                                    <td>{{ item.afectacion.valor_minimo }}</td>
-                                    <td>{{ item.afectacion.valor_maximo }}</td>
-                                    <td>{{ item.afectacion.nivel_afectacion }}</td>
-                                    <td>{{ item.afectacion.recomendacion_fisica }}</td>
-                                    <td>{{ item.afectacion.recomendacion_quimica }}</td>
-                                    <td>{{ item.afectacion.recomendacion_biologica }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% endif %}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if valor_x is not None %}
-
-        <p>valor de sulfato de calcio: {{ valor_x }} </p>
-
-    {% endif %}
-
-
+    </form> -->
     
+    <div class="container">
+
+        {% if messages %}
+        <div class="alert alert-warning">
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if afectacion_infraestructura is not None or afectaciones_infraestructura_dos %}
+            <div class="contenedor">
+                <div class="izquierda">
+                    <h1>Tabla resumen</h1>
+                    <p> En esta tabla podrás visualizar de manera general los diferentes peligros y sus niveles. 
+                        Si deseas más detalles, en la parte inferior se explicarán las posibles afectaciones junto con 
+                        recomendaciones generales.
+                    </p>
+                </div>
+                
+                <div class="derecha">
+                    <table>
+                        <tr>
+                            <th>Peligro</th>
+                            <th>Tipo de peligro</th>
+                            <th>Parámetro</th>
+                            <th>Nivel de peligro</th>
+                        </tr>
+                        <tr>
+                            <td rowspan="10">Infraestructura</td>
+                            <td rowspan="6">Obturación</td>
+                        </tr> 
+
+                        <tr>
+                            <td>pH</td>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                {% if item.parametro == 'ph' %}
+                                    
+                                    {% if item.afectacion.nivel_afectacion == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% elif item.afectacion.nivel_afectacion == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% endif %}
+                                        
+                                {% endif %}
+                            {% endfor %}           
+                        </tr>   
+
+                        <tr>
+                            <td>Sólidos suspendidos totales</td>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                {% if item.parametro == 'solidos_solubles' %}
+                                    
+                                    {% if item.afectacion.nivel_afectacion == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% elif item.afectacion.nivel_afectacion == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% endif %}
+                                                        
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+
+                        <tr>
+                            <td>Sólidos disueltos</td>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                {% if item.parametro == 'solidos_disueltos' %}
+                                    
+                                    {% if item.afectacion.nivel_afectacion == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% elif item.afectacion.nivel_afectacion == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% endif %}
+                                    
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+                        <tr>
+                            <td>Hierro (Fe)</td>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                {% if item.parametro == 'hierro' %}
+                                        
+                                    {% if item.afectacion.nivel_afectacion == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% elif item.afectacion.nivel_afectacion == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% endif %}
+                                
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+                        <tr>
+                            <td>Manganeso (Mn) </td>
+                            {% for item in afectaciones_infraestructura_dos %}
+                                {% if item.parametro == 'manganeso' %}
+                                        
+                                    {% if item.afectacion.nivel_afectacion == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% elif item.afectacion.nivel_afectacion == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion.nivel_afectacion}}</p></td>
+                                    {% endif %}
+                                
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>               
+                        
+                        <tr>
+                            <td rowspan="4" >Incrustación o corrosión</td>
+                                            
+                        </tr>
+
+                        <tr><td>pH</td>
+                            {% for item in afectaciones_incrustracion %}
+                                {% if item.parametro == 'ph' %}
+                                        
+                                    {% if item.afectacion_incrustracion.nivel_peligro == "Bajo peligro de corrosión pero alto de incrustación" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Peligro medio de corrosión y de incrustación" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% endif %}
+                                
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+                            
+                        </tr>   
+                        <tr><td>Sulfatos</td>
+                            <{% for item in afectaciones_incrustracion %}
+                                {% if item.parametro == 'sulfatos' %}
+                                        
+                                    {% if item.afectacion_incrustracion.nivel_peligro == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% endif %}
+                                
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+                        <tr><td>Magnesio</td>
+                            <{% for item in afectaciones_incrustracion %}
+                                {% if item.parametro == 'magnesio' %}
+                                        
+                                    {% if item.afectacion_incrustracion.nivel_peligro == "Bajo" %}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Medio" %}
+                                    <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% endif %}
+                                
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </tr>    
+                        
+                        <tr>
+                            <td rowspan="12">Suelo</td>
+                            <td>Salinización</td>
+
+                            <!-- <td colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td> -->
+                                
+                            {% if suelo_afectacion.nivel_afectacion == "Bajo" %}
+                            <td style="background-color:rgb(4, 173, 4)" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
+                            {% elif suelo_afectacion.nivel_afectacion == "Medio" %}
+                            <td style="background-color:yellow" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
+                            {% else %}
+                            <td style="background-color:red" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
+                            {% endif %}
+                        
+                            
+
+                        </tr>            
+                        <tr>
+                            <td>Sodicidad</td>
+                    
+                            {% if yeso_modelo.nivel_peligro == "Bajo" %}
+                            <td style="background-color:rgb(4, 173, 4)" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
+                            {% elif yeso_modelo.nivel_peligro == "Medio" %}
+                            <td style="background-color:yellow" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
+                            {% else %}
+                            <td style="background-color:red" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
+                            {% endif %}
+                            
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+        
+
+        {% if afectacion_infraestructura is not None or afectaciones_infraestructura_dos %}
+            <div class="panel">
+                
+                <div class="panel-heading" onclick="togglePanel('panel_infraestructura')">
+                    Potencial peligro en la infraestructura de riego
+                </div>
+                <div id="panel_infraestructura" class="panel-body">
+                    {% if afectacion_infraestructura is not None %}
+                        <h2>Afectación a la Infraestructura</h2>
+                        <p >
+                            La calidad del agua, especialmente en términos de la presencia de sales como los carbonatos de sodio, 
+                            tiene un impacto significativo en la infraestructura de riego. La obstrucción de boquillas y la formación de incrustaciones 
+                            en tuberías son problemas comunes que requieren atención para asegurar un sistema de riego eficiente y duradero.
+                        </p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Valor del Índice</th>
+                                    <th>Valor Mínimo</th>
+                                    <th>Valor Máximo</th>
+                                    <th>Nivel de peligro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ valor_indice|floatformat:2  }}</td>
+                                    <td>{{ afectacion_infraestructura.valor_minimo }}</td>
+                                    <td>{{ afectacion_infraestructura.valor_maximo }}</td>
+                                    <td>{{ afectacion_infraestructura.nivel_afectacion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+                    {% if afectaciones_infraestructura_dos %}
+                        <h2>Obturación</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parámetro</th>
+                                    <th>Valor Ingresado</th>
+                                    <!-- <th>Valor Mínimo</th>
+                                    <th>Valor Máximo</th> -->
+                                    <th>Nivel de peligro</th>
+                                    <th>Recomendación Física</th>
+                                    <th>Recomendación Química</th>
+                                    <th>Recomendación Biológica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in afectaciones_infraestructura_dos %}
+                                    <tr>
+                                        <td>{{ item.afectacion.nombre }}</td>
+                                        <td>{{ item.valor_ingresado }}</td>
+                                        <!-- <td>{{ item.afectacion.valor_minimo }}</td>
+                                        <td>{{ item.afectacion.valor_maximo }}</td> -->
+                                        <td>{{ item.afectacion.nivel_afectacion }}</td>
+                                        <td>{{ item.afectacion.recomendacion_fisica }}</td>
+                                        <td>{{ item.afectacion.recomendacion_quimica }}</td>
+                                        <td>{{ item.afectacion.recomendacion_biologica }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+                    {% if afectaciones_incrustracion %}
+                        <h2>Incrustración o corrosión </h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parámetro</th>
+                                    <th>Valor Ingresado</th>
+                                    <th>Valor Mínimo</th>
+                                    <th>Valor Máximo</th>
+                                    <th>Nivel de Afectación</th>
+                                    <th>Recomendación Física</th>
+                                    <th>Recomendación Química</th>
+                                    <th>Recomendación Biológica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in afectaciones_incrustracion %}
+                                    <tr>
+                                        <td>{{ item.afectacion_incrustracion.nombre }}</td>
+                                        <td>{{ item.valor_ingresado }}</td>
+                                        <td>{{ item.afectacion_incrustracion.valor_minimo }}</td>
+                                        <td>{{ item.afectacion_incrustracion.valor_maximo }}</td>
+                                        <td>{{ item.afectacion_incrustracion.nivel_peligro }}</td>
+                                        <td>{{ item.afectacion_incrustracion.recomendacion_fisica }}</td>
+                                        <td>{{ item.afectacion_incrustracion.recomendacion_quimica }}</td>
+                                        <td>{{ item.afectacion_incrustracion.recomendacion_biologica }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+       <!-- SUELO  -->
+
+        {% if valor_x is not None or suelo_afectacion or yeso_modelo or riego_lavado_modelo or mensaje%}
+
+            <div class="panel">
+                <div class="panel-heading" onclick="togglePanel('panel_suelo')">
+                    Potencial peligro en el suelo 
+                </div>
+                <div id="panel_suelo" class="panel-body">
+
+                    <h2>Sodicidad</h2>
+
+                    <!-- <h3>Debido a que existe una reducción de infiltración por sodio
+                        se recomienda agregar al agua de riego la siguiente 
+                        cantidad de sulfato de calcio como mínimo: {{ valor_x|floatformat:2 }} [mmolcL-1]  y 
+                        para evitar el peligro de sodificación se requieren {{ yeso|floatformat:2 }} gramos de 
+                        yeso puro en cada m3 de agua de riego</h3> -->
+
+                    {% if mensaje %}
+                        <p>{{ mensaje }}</p>
+                    {% endif %}
+            
+                    
+                    {% if yeso_modelo %}
+
+                        <p> Acorde a los datos proporcionados se establece que hay reducción de infiltración
+                            por sodio, y en caso de decidir tratar el agua para minizar el peligro de sodificación se recomienda el 
+                            uso de emiendas. A continuación podrá encontrar la cantidad de yeso puro que debería de agregar como mínimo 
+                            para este fin, según la metodología de Villafañe. 
+                        </p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Requerimiento de yeso puro en el agua de riego [g m-3]</th>
+                                    <th>Valor Mínimo </th>
+                                    <th>Valor Máximo </th>
+                                    <th>Nivel de peligro</th>                                    
+                                    <th>Recomendación</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <td>{{ yeso|floatformat:2  }}</td>                                                                                                   
+                                    <td>{{ yeso_modelo.valor_minimo }}</td>                                
+                                    <td>{{ yeso_modelo.valor_maximo }}</td>                                                    
+                                    <td>{{ yeso_modelo.nivel_peligro }}</td>                                                               
+                                    <td>{{ yeso_modelo.recomendacion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+
+                    <h2>Salinización</h2>  
+
+                    <!-- SosalRiego  -->
+                    <p>El investigador Villafañe propusó un procedimiento que evalúa la calidad del agua de riego de acuerdo con los riesgos de sodificación y salinización del
+                        suelo.  </p>
+                    {% if riego_lavado_modelo %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Requerimiento de lavado</th>
+                                    <th>Valor Mínimo </th>
+                                    <th>Valor Máximo </th>
+                                    <th>Nivel de peligro</th>                                    
+                                    <th>Recomendación</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <td>{{ riego_lavado_intento|floatformat:2  }}</td>                                                                                                   
+                                    <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
+                                    <td>{{ riego_lavado_modelo.valor_maximo }}</td>                                                    
+                                    <td>{{ riego_lavado_modelo.nivel_peligro }}</td>                                                               
+                                    <td>{{ riego_lavado_modelo.recomendacion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No se encontró una afectación correspondiente.</p>
+                    {% endif %}
+                    
+                    <!-- Echeverri  -->
+                    <p>El investigador Echeverri presentó una propuesta para identificar el riesgo de salinización 
+                        de suelos en fase soluble en zonas bajo riego en Colombia. </p>
+                    {% if suelo_afectacion %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Conductividad Eléctrica</th>
+                                    <th>Valor Mínimo Conductividad</th>
+                                    <th>Valor Máximo Conductividad</th>
+                                    <th>Solubilidad</th>
+                                    <th>Nivel de peligro</th>
+                                    <th>Posible Afectación</th>
+                                    <th>Recomendación</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <td>{{ conductividad_electrica }}</td>                                                                                                   
+                                    <td>{{ suelo_afectacion.valor_minimo }}</td>                                
+                                    <td>{{ suelo_afectacion.valor_maximo }}</td>                                
+                                    <td>{{ suelo_afectacion.solubilidad }}</td>                                                                    
+                                    <td>{{ suelo_afectacion.nivel_afectacion }}</td>                                                                   
+                                    <td>{{ suelo_afectacion.posible_afectacion }}</td>                                
+                                    <td>{{ suelo_afectacion.recomendacion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No se encontró una afectación correspondiente.</p>
+                    {% endif %}
+         
+                        
+                </div>
+           
+            </div>    
+
+        {% endif %}
+
+        <!-- <div class="panel-heading" onclick="togglePanel('panel_normativa')">
+            Normatividad colombiana
+        </div> -->
+    </div>
+
     <script>
-        function togglePanel() {
-            var panelBody = document.querySelector('.panel-body');
-            panelBody.classList.toggle('show');
+        function togglePanel(panelId) {
+            var panelBody = document.getElementById(panelId);
+            if (panelBody) {
+                panelBody.classList.toggle('show');
+            }
         }
     </script>
 
