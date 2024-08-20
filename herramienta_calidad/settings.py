@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-mka#cw-2n!s8!5!r)&!(dsrdnr9k&(eqtnk)rj1-94-wff0)m9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG').lower() == True
 
 ALLOWED_HOSTS = []
 
@@ -91,10 +93,7 @@ available_databases = {
 
 DATABASES = {}
 
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
 USE_PRODUCTION_DATABASE = os.getenv('USE_PRODUCTION_DATABASE', 'false').lower() == 'true'
 
