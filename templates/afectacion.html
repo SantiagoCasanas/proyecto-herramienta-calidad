@@ -441,10 +441,10 @@
                                         <td>{{ item.valor_ingresado }}</td>
                                         <!-- <td>{{ item.afectacion.valor_minimo }}</td>
                                         <td>{{ item.afectacion.valor_maximo }}</td> -->
-                                        <td>{{ item.afectacion.nivel_afectacion }}</td>
-                                        <td>{{ item.afectacion.recomendacion_fisica }}</td>
-                                        <td>{{ item.afectacion.recomendacion_quimica }}</td>
-                                        <td>{{ item.afectacion.recomendacion_biologica }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion.nivel_afectacion }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_fisica|linebreaksbr }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_quimica|linebreaksbr }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_biologica|linebreaksbr }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -458,8 +458,8 @@
                                 <tr>
                                     <th>Parámetro</th>
                                     <th>Valor Ingresado</th>
-                                    <th>Valor Mínimo</th>
-                                    <th>Valor Máximo</th>
+                                    <!-- <th>Valor Mínimo</th> -->
+                                    <!-- <th>Valor Máximo</th> -->
                                     <th>Nivel de Afectación</th>
                                     <th>Recomendación Física</th>
                                     <th>Recomendación Química</th>
@@ -471,12 +471,12 @@
                                     <tr>
                                         <td>{{ item.afectacion_incrustracion.nombre }}</td>
                                         <td>{{ item.valor_ingresado }}</td>
-                                        <td>{{ item.afectacion_incrustracion.valor_minimo }}</td>
-                                        <td>{{ item.afectacion_incrustracion.valor_maximo }}</td>
+                                        <!-- <td>{{ item.afectacion_incrustracion.valor_minimo }}</td> -->
+                                        <!-- <td>{{ item.afectacion_incrustracion.valor_maximo }}</td> -->
                                         <td>{{ item.afectacion_incrustracion.nivel_peligro }}</td>
-                                        <td>{{ item.afectacion_incrustracion.recomendacion_fisica }}</td>
-                                        <td>{{ item.afectacion_incrustracion.recomendacion_quimica }}</td>
-                                        <td>{{ item.afectacion_incrustracion.recomendacion_biologica }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_fisica|linebreaksbr  }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_quimica|linebreaksbr  }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_biologica|linebreaksbr  }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

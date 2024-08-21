@@ -26,7 +26,6 @@ from .funciones import anuncios
 
 
 
-
 def inicio(request):
     return render(request, 'inicio.html')
 
