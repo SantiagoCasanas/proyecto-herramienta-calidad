@@ -89,26 +89,7 @@ class SueloGeneral(models.Model):
         except Exception as e:
             
             return None
-        
-class SueloGeneral(models.Model):
 
-    valor_minimo = models.FloatField(blank=True, null=True)
-    valor_maximo = models.FloatField(blank=True, null=True)
-    nivel_afectacion = models.TextField(blank=True, null=True)
-    recomendacion = models.TextField(blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.nivel_afectacion} - {self.valor_minimo} - {self.valor_maximo} - {self.recomendacion}"
-    
-    @staticmethod
-    def obtener_suelo_general(valor: float) -> "SueloGeneral":
-        
-        try:
-            afectacion = SueloGeneral.objects.filter(valor_minimo__lt=valor, valor_maximo__gte=valor).first()
-            return afectacion
-        except Exception as e:
-            
-            return None
         
 class SueloSalinizacion(models.Model):
     conductividad_electrica = models.FloatField(blank=True, null=True)
