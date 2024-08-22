@@ -355,12 +355,14 @@
 
                             <!-- <td colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td> -->
                                 
-                            {% if suelo_afectacion.nivel_afectacion == "Bajo" %}
+                            {% if suelo_afectacion.nivel_afectacion == "Bajo"  or suelo_afectacion.nivel_afectacion == "Muy bajo" %}
                             <td style="background-color:rgb(4, 173, 4)" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
-                            {% elif suelo_afectacion.nivel_afectacion == "Medio" %}
+                            {% elif suelo_afectacion.nivel_afectacion == "Medio"  %}
                             <td style="background-color:yellow" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
-                            {% else %}
+                            {% elif suelo_afectacion.nivel_afectacion == "Alto" or suelo_afectacion.nivel_afectacion == "Muy alto" %}
                             <td style="background-color:red" colspan="2">{{ suelo_afectacion.nivel_afectacion }}</td>
+                            {% else %}
+                            <td colspan="2">No aplica</td>
                             {% endif %}
                         
                             
@@ -369,12 +371,14 @@
                         <tr>
                             <td>Sodicidad</td>
                     
-                            {% if yeso_modelo.nivel_peligro == "Bajo" %}
+                            {% if yeso_modelo.nivel_peligro == "Bajo" or yeso_modelo.nivel_peligro == "Muy bajo"  %}
                             <td style="background-color:rgb(4, 173, 4)" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
                             {% elif yeso_modelo.nivel_peligro == "Medio" %}
                             <td style="background-color:yellow" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
-                            {% else %}
+                            {% elif yeso_modelo.nivel_peligro == "Alto" or  yeso_modelo.nivel_peligro == "Muy alto" %}
                             <td style="background-color:red" colspan="2">{{ yeso_modelo.nivel_peligro }}</td>
+                            {% else %}
+                            <td colspan="2">No aplica</td>
                             {% endif %}
                             
                         </tr>
@@ -389,7 +393,7 @@
             <div class="panel">
                 
                 <div class="panel-heading" onclick="togglePanel('panel_infraestructura')">
-                    Potencial peligro en la infraestructura de riego
+                    Peligro potencial en la infraestructura de riego
                 </div>
                 <div id="panel_infraestructura" class="panel-body">
                     {% if afectacion_infraestructura is not None %}
@@ -442,7 +446,7 @@
                                         <!-- <td>{{ item.afectacion.valor_minimo }}</td>
                                         <td>{{ item.afectacion.valor_maximo }}</td> -->
                                         <td style="text-align: justify;">{{ item.afectacion.nivel_afectacion }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_fisica|linebreaksbr }}</td>
+                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_fisica}}</td>
                                         <td style="text-align: justify;">{{ item.afectacion.recomendacion_quimica|linebreaksbr }}</td>
                                         <td style="text-align: justify;">{{ item.afectacion.recomendacion_biologica|linebreaksbr }}</td>
                                     </tr>
@@ -492,7 +496,7 @@
 
             <div class="panel">
                 <div class="panel-heading" onclick="togglePanel('panel_suelo')">
-                    Potencial peligro en el suelo 
+                    Peligro potencial en el suelo 
                 </div>
                 <div id="panel_suelo" class="panel-body">
 
@@ -534,7 +538,7 @@
                                     <td>{{ yeso_modelo.valor_minimo }}</td>                                
                                     <td>{{ yeso_modelo.valor_maximo }}</td>                                                    
                                     <td>{{ yeso_modelo.nivel_peligro }}</td>                                                               
-                                    <td>{{ yeso_modelo.recomendacion }}</td>
+                                    <td>{{ yeso_modelo.recomendacion|linebreaksbr  }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -565,7 +569,7 @@
                                     <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
                                     <td>{{ riego_lavado_modelo.valor_maximo }}</td>                                                    
                                     <td>{{ riego_lavado_modelo.nivel_peligro }}</td>                                                               
-                                    <td>{{ riego_lavado_modelo.recomendacion }}</td>
+                                    <td>{{ riego_lavado_modelo.recomendacion|linebreaksbr  }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -585,7 +589,7 @@
                                     <th>Valor Máximo Conductividad</th>
                                     <th>Solubilidad</th>
                                     <th>Nivel de peligro</th>
-                                    <th>Posible Afectación</th>
+                                    <!-- <th>Posible Afectación</th> -->
                                     <th>Recomendación</th>
 
                                 </tr>
@@ -598,7 +602,7 @@
                                     <td>{{ suelo_afectacion.valor_maximo }}</td>                                
                                     <td>{{ suelo_afectacion.solubilidad }}</td>                                                                    
                                     <td>{{ suelo_afectacion.nivel_afectacion }}</td>                                                                   
-                                    <td>{{ suelo_afectacion.posible_afectacion }}</td>                                
+                                    <!-- <td>{{ suelo_afectacion.posible_afectacion }}</td>                                 -->
                                     <td>{{ suelo_afectacion.recomendacion }}</td>
                                 </tr>
                             </tbody>

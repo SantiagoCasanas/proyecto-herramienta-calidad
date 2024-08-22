@@ -132,14 +132,14 @@ class AfectacionGeneralForm(forms.Form):
     )
     
     alcalinidad = forms.FloatField(
-        label='Alcalinidad [°C]', 
+        label='Alcalinidad', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
     )
  
     dureza = forms.FloatField(
-        label='Dureza []', 
+        label='Dureza', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
