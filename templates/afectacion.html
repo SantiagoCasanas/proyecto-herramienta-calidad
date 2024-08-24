@@ -203,7 +203,7 @@
                             <th>Nivel de peligro</th>
                         </tr>
                         <tr>
-                            <td rowspan="10">Infraestructura</td>
+                            <td rowspan="10">Afectación en la Infraestructura de riego</td>
                             <td rowspan="6">Obturación</td>
                         </tr> 
 
@@ -441,14 +441,14 @@
                             <tbody>
                                 {% for item in afectaciones_infraestructura_dos %}
                                     <tr>
-                                        <td>{{ item.afectacion.nombre }}</td>
-                                        <td>{{ item.valor_ingresado }}</td>
+                                        <td style="vertical-align: top;">{{ item.afectacion.nombre }}</td>
+                                        <td style="vertical-align: top;">{{ item.valor_ingresado }}</td>
                                         <!-- <td>{{ item.afectacion.valor_minimo }}</td>
                                         <td>{{ item.afectacion.valor_maximo }}</td> -->
-                                        <td style="text-align: justify;">{{ item.afectacion.nivel_afectacion }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_fisica}}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_quimica|linebreaksbr }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion.recomendacion_biologica|linebreaksbr }}</td>
+                                        <td style="text-align: center; vertical-align: top;">{{ item.afectacion.nivel_afectacion }}</td>
+                                        <td style="text-align: justify; vertical-align: top; width: 200px;">{{ item.afectacion.recomendacion_fisica|linebreaksbr}}</td>
+                                        <td style="text-align: justify; vertical-align: top; width: 200px;">{{ item.afectacion.recomendacion_quimica|linebreaksbr }}</td>
+                                        <td style="text-align: justify; vertical-align: top; width: 200px;">{{ item.afectacion.recomendacion_biologica|linebreaksbr }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -473,14 +473,14 @@
                             <tbody>
                                 {% for item in afectaciones_incrustracion %}
                                     <tr>
-                                        <td>{{ item.afectacion_incrustracion.nombre }}</td>
-                                        <td>{{ item.valor_ingresado }}</td>
+                                        <td style="vertical-align: top;">{{ item.afectacion_incrustracion.nombre }}</td>
+                                        <td style="vertical-align: top;">{{ item.valor_ingresado }}</td>
                                         <!-- <td>{{ item.afectacion_incrustracion.valor_minimo }}</td> -->
                                         <!-- <td>{{ item.afectacion_incrustracion.valor_maximo }}</td> -->
-                                        <td>{{ item.afectacion_incrustracion.nivel_peligro }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_fisica|linebreaksbr  }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_quimica|linebreaksbr  }}</td>
-                                        <td style="text-align: justify;">{{ item.afectacion_incrustracion.recomendacion_biologica|linebreaksbr  }}</td>
+                                        <td style="text-align: justify;vertical-align: top;">{{ item.afectacion_incrustracion.nivel_peligro }}</td>
+                                        <td style="text-align: justify;vertical-align: top;width: 200px;">{{ item.afectacion_incrustracion.recomendacion_fisica|linebreaksbr  }}</td>
+                                        <td style="text-align: justify; vertical-align: top;width: 200px;">{{ item.afectacion_incrustracion.recomendacion_quimica|linebreaksbr  }}</td>
+                                        <td style="text-align: justify;vertical-align: top;width: 200px;">{{ item.afectacion_incrustracion.recomendacion_biologica|linebreaksbr  }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -524,8 +524,8 @@
                             <thead>
                                 <tr>
                                     <th>Requerimiento de yeso puro en el agua de riego [g m-3]</th>
-                                    <th>Valor Mínimo </th>
-                                    <th>Valor Máximo </th>
+                                    <!-- <th>Valor Mínimo </th>
+                                    <th>Valor Máximo </th> -->
                                     <th>Nivel de peligro</th>                                    
                                     <th>Recomendación</th>
 
@@ -535,8 +535,8 @@
                                 <tr>
                                     
                                     <td>{{ yeso|floatformat:2  }}</td>                                                                                                   
-                                    <td>{{ yeso_modelo.valor_minimo }}</td>                                
-                                    <td>{{ yeso_modelo.valor_maximo }}</td>                                                    
+                                    <!-- <td>{{ yeso_modelo.valor_minimo }}</td>                                
+                                    <td>{{ yeso_modelo.valor_maximo }}</td>    -->                                                 
                                     <td>{{ yeso_modelo.nivel_peligro }}</td>                                                               
                                     <td>{{ yeso_modelo.recomendacion|linebreaksbr  }}</td>
                                 </tr>
@@ -555,8 +555,8 @@
                             <thead>
                                 <tr>
                                     <th>Requerimiento de lavado</th>
-                                    <th>Valor Mínimo </th>
-                                    <th>Valor Máximo </th>
+                                    <!-- <th>Valor Mínimo </th>
+                                    <th>Valor Máximo </th> -->
                                     <th>Nivel de peligro</th>                                    
                                     <th>Recomendación</th>
 
@@ -566,8 +566,8 @@
                                 <tr>
                                     
                                     <td>{{ riego_lavado_intento|floatformat:2  }}</td>                                                                                                   
-                                    <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
-                                    <td>{{ riego_lavado_modelo.valor_maximo }}</td>                                                    
+                                    <!-- <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
+                                    <td>{{ riego_lavado_modelo.valor_maximo }}</td>  -->                                                   
                                     <td>{{ riego_lavado_modelo.nivel_peligro }}</td>                                                               
                                     <td>{{ riego_lavado_modelo.recomendacion|linebreaksbr  }}</td>
                                 </tr>
@@ -585,8 +585,8 @@
                             <thead>
                                 <tr>
                                     <th>Conductividad Eléctrica</th>
-                                    <th>Valor Mínimo Conductividad</th>
-                                    <th>Valor Máximo Conductividad</th>
+                                    <!-- <th>Valor Mínimo Conductividad</th>
+                                    <th>Valor Máximo Conductividad</th> -->
                                     <th>Solubilidad</th>
                                     <th>Nivel de peligro</th>
                                     <!-- <th>Posible Afectación</th> -->
@@ -598,8 +598,8 @@
                                 <tr>
                                     
                                     <td>{{ conductividad_electrica }}</td>                                                                                                   
-                                    <td>{{ suelo_afectacion.valor_minimo }}</td>                                
-                                    <td>{{ suelo_afectacion.valor_maximo }}</td>                                
+                                    <!-- <td>{{ suelo_afectacion.valor_minimo }}</td>                                
+                                    <td>{{ suelo_afectacion.valor_maximo }}</td>  -->                               
                                     <td>{{ suelo_afectacion.solubilidad }}</td>                                                                    
                                     <td>{{ suelo_afectacion.nivel_afectacion }}</td>                                                                   
                                     <!-- <td>{{ suelo_afectacion.posible_afectacion }}</td>                                 -->

@@ -111,7 +111,7 @@ class ConsultarAfectacionGeneralView(FormView):
             self.afectaciones_incrustracion = []
 
             for parametros, valor in form.cleaned_data.items():
-                print(f"Procesando {parametros}: {valor}")
+                #print(f"Procesando {parametros}: {valor}")
                 if valor is not None:  # Verifica que el valor no sea None
                     afectacion_incrustracion = AfectacionDetalladaIncrustracion.obtener_afectacion_incrustracion(parametros, valor)
                     if afectacion_incrustracion:
@@ -141,7 +141,7 @@ class ConsultarAfectacionGeneralView(FormView):
             conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             self.conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             context['conductividad_electrica'] = self.conductividad_electrica
-            print (conductividad_electrica)
+            #print (conductividad_electrica)
 
             self.suelo_afectacion = SueloSalinizacion.suelo_salinizacion(solubilidad, conductividad_electrica)
 
@@ -164,7 +164,7 @@ class ConsultarAfectacionGeneralView(FormView):
         
             if isinstance(resultado_condicion, str):
                 context['mensaje'] = resultado_condicion
-                print (resultado_condicion)
+                #print (resultado_condicion)
             else:
                 self.valor_x = resultado_condicion
                 context['valor_x'] = self.valor_x
