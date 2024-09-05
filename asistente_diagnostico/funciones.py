@@ -47,7 +47,7 @@ def anuncios(parametros):
         mensaje_carbonato = "Los carbonatos deben de ser mayores a cero"
     
 
-    if diferencia_relativa > 100:
+    if diferencia_relativa > 10:
         limite = 1
         mensaje = "La diferencia entre la suma de cationes y aniones es mayor al 10%. Revisar"
     
