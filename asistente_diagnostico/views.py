@@ -29,6 +29,10 @@ from .funciones import anuncios
 def inicio(request):
     return render(request, 'inicio.html')
 
+def nosotros(request):
+    return render(request, 'nosotros.html')
+
+
 
 class ConsultarAfectacionGeneralView(FormView):
     template_name = "afectacion.html"
@@ -130,9 +134,12 @@ class ConsultarAfectacionGeneralView(FormView):
             riego_lavado = salinizacion_lavado(form.cleaned_data)
             self.riego_lavado_intento = salinizacion_lavado(form.cleaned_data)
             context['riego_lavado_intento'] = self.riego_lavado_intento
+            print(riego_lavado)
 
             self.riego_lavado_modelo = Salinizacion.salinizacion(riego_lavado)
             context['riego_lavado_modelo'] = self.riego_lavado_modelo
+            sal=self.riego_lavado_modelo
+            print(sal)
 
 
             #ECHEVERRI

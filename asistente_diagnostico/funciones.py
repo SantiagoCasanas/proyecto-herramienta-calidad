@@ -448,21 +448,21 @@ def condicion_sodicidad(parametros):
 
 def salinizacion_lavado (parametros): 
     
-        conductividad_electrica = parametros["conductividad_electrica"]
-        lluvia_total_anual = parametros["lluvia_total_anual"]
-        tolerancia_cultivo = parametros["tolerancia_cultivo"]
-        textura = parametros["textura"]
+    conductividad_electrica = parametros["conductividad_electrica"]
+    lluvia_total_anual = parametros["lluvia_total_anual"]
+    tolerancia_cultivo = parametros["tolerancia_cultivo"]
+    textura = parametros["textura"]
 
-        evapotranspiracion = 9.142 - 0.004 * lluvia_total_anual
-        requerimiento_riego = 365 * evapotranspiracion - 0.7 * lluvia_total_anual
+    evapotranspiracion = 9.142 - 0.004 * lluvia_total_anual
+    requerimiento_riego = 365 * evapotranspiracion - 0.7 * lluvia_total_anual
 
-        conductividad_electrica_ajustada = conductividad_electrica
+    conductividad_electrica_ajustada = conductividad_electrica
 
-        conductividad_electrica_infiltracion = (conductividad_electrica_ajustada * requerimiento_riego + 0.7 * 0.15 * lluvia_total_anual) / (requerimiento_riego + 0.7 * lluvia_total_anual)
-        riego_lavado = conductividad_electrica_infiltracion / (3 * textura * tolerancia_cultivo)
-        agua_extra = (riego_lavado / (1 - riego_lavado)) * 100
-
-        return riego_lavado
+    conductividad_electrica_infiltracion = (conductividad_electrica_ajustada * requerimiento_riego + 0.7 * 0.15 * lluvia_total_anual) / (requerimiento_riego + 0.7 * lluvia_total_anual)
+    riego_lavado = conductividad_electrica_infiltracion / (3 * textura * tolerancia_cultivo)
+    agua_extra = (riego_lavado / (1 - riego_lavado)) * 100
+    print(riego_lavado)
+    return riego_lavado
     
 
 """ 

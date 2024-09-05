@@ -4,15 +4,49 @@ from django import forms
 
 class AfectacionGeneralForm(forms.Form):
     
+    usuario = forms.CharField(
+        label='Usuario', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
+    )
+
     choices_t = (("superficial", "superficial"), ("subterranea", "subterranea"))
- 
+
     fuentes_abastecimiento = forms.ChoiceField(
         choices=choices_t, 
         label='Fuente de abastecimiento',
         widget=forms.Select(attrs={'class': 'input-color'}),
         
+    )    
+
+    nombre_fuente = forms.CharField(
+        label='Nombre de la fuente', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
     )
-    
+
+    lugar = forms.CharField(
+        label='País/Departamento', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
+    )
+
+    laboratorio = forms.CharField(
+        label='Laboratorio', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
+    )
+
+    fecha_muestreo = forms.CharField(
+        label='Fecha de muestreo', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
+    )
+
+    choices_riego = (("Gravedad", "Gravedad"), ("Goteo", "Goteo"), ("Aspersión", "Aspersión"))
+
+    metodo_riego = forms.ChoiceField(
+        choices=choices_riego, 
+        label='Método de riego',
+        widget=forms.Select(attrs={'class': 'input-color'}),
+        
+    )  
+
     ph = forms.FloatField(
         label='pH:', 
         min_value=0,
@@ -132,14 +166,14 @@ class AfectacionGeneralForm(forms.Form):
     )
     
     alcalinidad = forms.FloatField(
-        label='Alcalinidad', 
+        label='Alcalinidad [mg/L]', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
     )
  
     dureza = forms.FloatField(
-        label='Dureza', 
+        label='Dureza [mg/L]', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
