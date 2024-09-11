@@ -17,6 +17,7 @@ def anuncios(parametros):
     magnesio = conversion(parametros["magnesio"], 'magnesio')
     sodio = conversion(parametros["sodio"], 'sodio')
     potasio = conversion(parametros["potasio"], 'potasio')
+    conductividad = parametros["conductividad_electrica"]
     print(f"Calcio: {calcio}")
     print(f"mg: {magnesio}")
     print(f"na: {sodio}")
@@ -26,6 +27,7 @@ def anuncios(parametros):
     bicarbonato = conversion(parametros["bicarbonato"], 'bicarbonato')
     cloro= conversion(parametros["cloro"], 'cloro')
     sulfatos = conversion(parametros["sulfatos"], 'sulfatos')
+
 
     
 
@@ -37,12 +39,14 @@ def anuncios(parametros):
     diferencia_relativa = (diferencia*100)/ ((suma_cationes + suma_aniones))
     print(f"diferencia:{diferencia_relativa}")
 
+
+
     limite=""
     mensaje = ""
     limite_carbonatos_numero=""
     mensaje_carbonato=""
 
-    if ph>8.5 and carbonato<0:
+    if ph>8.2 and carbonato<0:
         limite_carbonatos_numero = 1
         mensaje_carbonato = "Los carbonatos deben de ser mayores a cero"
     
@@ -50,6 +54,8 @@ def anuncios(parametros):
     if diferencia_relativa > 10:
         limite = 1
         mensaje = "La diferencia entre la suma de cationes y aniones es mayor al 10%. Revisar"
+
+    
     
 
         
@@ -354,8 +360,34 @@ def sales (parametros):
     else: 
         solubilidad=">5000"
 
+
+    ####Sales 
+    sales_list = [
+        ("Carbonato de calcio:", carbonato_calcio),
+        ("Carbonato de magnesio:", carbonato_magnesio),
+        ("Bicarbonato de calcio", bicarbonato_calcio),
+        ("bicarbonato_magnesio", bicarbonato_magnesio),
+        ("Sulfato de calcio", sulfato_calcio),
+        ("bicarbonato_sodio", bicarbonato_sodio),
+        ("Sulfato de potasio", sulfato_potasio),
+        ("cloruro_potasio", cloruro_potasio),
+        ("sulfato_magnesio", sulfato_magnesio),
+        ("Cloruro de sodio", cloruro_sodio),
+        ("sulfato_sodio", sulfato_sodio),
+        ("carbonato_sodio", carbonato_sodio),
+        ("cloruro_magnesio", cloruro_magnesio),
+        ("cloruro_calcio", cloruro_calcio)
+    ]
+
+    # Ordenar la lista por valor en orden descendente.
+    sorted_sales = sorted(sales_list, key=lambda x: x[1], reverse=True)
+
+    # Obtener los 4 valores más altos.
+    top_3_sales = sorted_sales[:4]
+    print(top_3_sales)
+
     #print(solubilidad)
-    return carbonato_calcio, bicarbonato_calcio, carbonato_magnesio, bicarbonato_magnesio, solubilidad
+    return carbonato_calcio, bicarbonato_calcio, carbonato_magnesio, bicarbonato_magnesio, solubilidad,top_3_sales
 
 
 

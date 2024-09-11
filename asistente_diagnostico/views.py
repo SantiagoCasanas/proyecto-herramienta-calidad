@@ -59,6 +59,8 @@ class ConsultarAfectacionGeneralView(FormView):
             context['sales_results'] = self.sales_results
             context['suelo_afectacion'] = self.suelo_afectacion
             context['yeso']=self.yeso
+            context['top_3_sales'] = self.top_3_sales
+
         
 
         return context
@@ -145,6 +147,9 @@ class ConsultarAfectacionGeneralView(FormView):
             #ECHEVERRI
             self.sales_results = sales(form.cleaned_data)
             solubilidad = self.sales_results[4]
+            top_3_sales = self.sales_results[5]
+            context['top_3_sales'] = top_3_sales
+
             conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             self.conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             context['conductividad_electrica'] = self.conductividad_electrica
@@ -156,6 +161,10 @@ class ConsultarAfectacionGeneralView(FormView):
             context['suelo_afectacion'] = self.suelo_afectacion
 
             suelo_afectacion = self.suelo_afectacion
+
+        
+
+
             
 
             """ self.solubilidad_sales = sales(parametros)

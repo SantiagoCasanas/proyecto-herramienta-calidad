@@ -97,13 +97,24 @@ header {
     font-size: 18px;
     max-width: 700px;
 }
-.introduccion .contenido img{
-    width: 50px;
-    height: 50px;
-    z-index: 10;
+
+.logose {
+    display: flex;
+    justify-content: center; /* Opcional: centra las imágenes en el contenedor */
+    align-items: center; /* Opcional: alinea verticalmente las imágenes */
+    gap: 50px; /* Espacio entre las imágenes, ajusta según tus necesidades */
+    padding: 20px; /* Espacio interior opcional alrededor de las imágenes */
+
 }
 
-
+.logos {
+    width: 100px; /* Ajusta el tamaño máximo de las imágenes si es necesario */
+    height: 100px; /* Mantiene la proporción de las imágenes */
+    border-radius: 10px;
+    border-color: #000000;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+ 
 button {
     background-color: #4e0d0d;
     font-size: 1rem;
@@ -166,4 +177,19 @@ button {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
     margin-left: 280px;
     text-align: justify;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background:#005e00;
+    color: #fff;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
 }

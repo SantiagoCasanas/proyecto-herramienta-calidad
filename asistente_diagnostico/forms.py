@@ -23,8 +23,13 @@ class AfectacionGeneralForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'input-color'}),  
     )
 
-    lugar = forms.CharField(
-        label='País/Departamento', 
+    pais = forms.CharField(
+        label='País:', 
+        widget=forms.TextInput(attrs={'class': 'input-color'}),  
+    )
+
+    departamento = forms.CharField(
+        label='Departamento/Localidad', 
         widget=forms.TextInput(attrs={'class': 'input-color'}),  
     )
 
@@ -34,7 +39,7 @@ class AfectacionGeneralForm(forms.Form):
     )
 
     fecha_muestreo = forms.CharField(
-        label='Fecha de muestreo', 
+        label='Fecha de muestreo [dd/mm/aaaa]', 
         widget=forms.TextInput(attrs={'class': 'input-color'}),  
     )
 
@@ -104,7 +109,7 @@ class AfectacionGeneralForm(forms.Form):
     )  
 
     cloro = forms.FloatField(
-        label='Cloro (Cl-) [mg/L]', 
+        label='Cloruro (Cl-) [mg/L]', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
@@ -166,7 +171,7 @@ class AfectacionGeneralForm(forms.Form):
     )
     
     alcalinidad = forms.FloatField(
-        label='Alcalinidad [mg/L]', 
+        label='Alcalinidad [mg/L CaCO3]', 
         min_value=0,
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
