@@ -298,8 +298,24 @@
                                             
                         </tr>
 
-                        <tr><td>pH</td>
+                        <tr><td>Índice de Langelier</td>
                             {% for item in afectaciones_incrustracion %}
+                                {% if item.parametro == 'indice_langelier' %}
+                                            
+                                    {% if item.afectacion_incrustracion.nivel_peligro == "Normal"%}
+                                    <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media corrosión"%}
+                                    <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media inscrustación"%}
+                                    <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% else %}
+                                    <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
+                                    {% endif %}
+                                    
+                                        
+                                {% endif %}
+                            {% endfor %}
+                            <!-- {% for item in afectaciones_incrustracion %}
                                 {% if item.parametro == 'ph' %}
                                         
                                     {% if item.afectacion_incrustracion.nivel_peligro == "Bajo peligro de corrosión pero alto de incrustación" %}
@@ -312,7 +328,7 @@
                                 
                                     
                                 {% endif %}
-                            {% endfor %}
+                            {% endfor %} -->
                         </tr>    
                             
                         </tr>   
@@ -546,6 +562,40 @@
 
 
                     <h2>Salinización</h2>  
+
+                    <!-- FAO -->
+                    <p>
+                        Ayres y Westcott (1985) sugirieron para la FAO (Organización de las Naciones Unidas para 
+                        la Agricultura y la Alimentación) la clasificación del riesgo de salinización de los suelos en 
+                        función de la conductividad eléctrica del agua empleada en el riego, utilizando la tabla 
+                        que se presenta a continuación.  
+                    </p>
+                    {% if salinizacion_fao %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Valor CE [dS/m]</th>
+                                    <!-- <th>Valor Mínimo </th>-->
+                                    <th>Riesgo de Salinización</th> 
+                                    <th>Restricciones de uso</th>                                    
+                                    <!--<th>Recomendación</th>-->
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <td>{{ conductividad_electrica|floatformat:2  }}</td>                                                                                                   
+                                    <!-- <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
+                                    <td>{{ riego_lavado_modelo.valor_maximo }}</td>  -->                                                   
+                                    <td>{{ salinizacion_fao.clase }}</td>                                                               
+                                    <td>{{ salinizacion_fao.recomendacion|linebreaksbr  }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>No se encontró una afectación correspondiente.</p>
+                    {% endif %}
 
                     <!-- SosalRiego  -->
                     <p>De acuerdo con el investigador Villafañe (2011) propusó un procedimiento que evalúa la calidad del agua 

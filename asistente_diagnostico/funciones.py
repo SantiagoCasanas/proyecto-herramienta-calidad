@@ -18,10 +18,7 @@ def anuncios(parametros):
     sodio = conversion(parametros["sodio"], 'sodio')
     potasio = conversion(parametros["potasio"], 'potasio')
     conductividad = parametros["conductividad_electrica"]
-    print(f"Calcio: {calcio}")
-    print(f"mg: {magnesio}")
-    print(f"na: {sodio}")
-    print(f"k: {potasio}")
+    
 
     carbonato = conversion(parametros["carbonato"], 'carbonato')
     bicarbonato = conversion(parametros["bicarbonato"], 'bicarbonato')
@@ -29,15 +26,15 @@ def anuncios(parametros):
     sulfatos = conversion(parametros["sulfatos"], 'sulfatos')
 
 
-    
 
     suma_cationes = (calcio+magnesio+sodio+potasio)
-    print(f"suma:{suma_cationes}")
+   
     suma_aniones = (carbonato+bicarbonato+cloro+sulfatos)
     
     diferencia = abs(suma_cationes - suma_aniones)
     diferencia_relativa = (diferencia*100)/ ((suma_cationes + suma_aniones))
-    print(f"diferencia:{diferencia_relativa}")
+    
+    conductividad_limite = (suma_aniones + suma_cationes)/2
 
 
 
@@ -45,8 +42,12 @@ def anuncios(parametros):
     mensaje = ""
     limite_carbonatos_numero=""
     mensaje_carbonato=""
+    limite_ce_baja=""
+    mensaje_ce_baja=""
+    limite_ce_alta=""
+    mensaje_ce_alta=""
 
-    if ph>8.2 and carbonato<0:
+    if ph>8.2 and carbonato<=0:
         limite_carbonatos_numero = 1
         mensaje_carbonato = "Los carbonatos deben de ser mayores a cero"
     
@@ -55,11 +56,16 @@ def anuncios(parametros):
         limite = 1
         mensaje = "La diferencia entre la suma de cationes y aniones es mayor al 10%. Revisar"
 
+    if conductividad > (0.06 * conductividad_limite):
+        limite_ce_baja= 1
+        mensaje_ce_baja = "CEr muy baja"
     
-    
-
+    if conductividad < (0.12 * conductividad_limite):
+        limite_ce_alta = 1
+        mensaje_ce_alta = "CEr muy alta"
         
-    return limite, mensaje,  limite_carbonatos_numero, mensaje_carbonato
+    return limite, mensaje,  limite_carbonatos_numero, mensaje_carbonato, limite_ce_baja, mensaje_ce_baja, limite_ce_alta, mensaje_ce_alta 
+
 
 
 #INFRAESTRUCTURA
@@ -177,7 +183,7 @@ def obtener_recomendaciones_generales_infraestructura( parametros):
         return None
     
 
-def inidice_langelier(parametros):
+def indice_langelier(parametros):
 
     ph = parametros["ph"]
     temperatura = parametros["temperatura"]
@@ -186,7 +192,9 @@ def inidice_langelier(parametros):
 
     indice_langelier = temperatura+ph+alcalinidad+dureza-12.5
     
-    return indice_langelier
+    print(f"indice de langelier: {indice_langelier}")
+    
+    return {"indice_langelier": indice_langelier}
 
 #SUELO
 
@@ -365,7 +373,7 @@ def sales (parametros):
     sales_list = [
         ("Carbonato de calcio:", carbonato_calcio),
         ("Carbonato de magnesio:", carbonato_magnesio),
-        ("Bicarbonato de calcio", bicarbonato_calcio),
+        ("Bicarbonato de calcio:", bicarbonato_calcio),
         ("bicarbonato_magnesio", bicarbonato_magnesio),
         ("Sulfato de calcio", sulfato_calcio),
         ("bicarbonato_sodio", bicarbonato_sodio),
@@ -383,8 +391,11 @@ def sales (parametros):
     sorted_sales = sorted(sales_list, key=lambda x: x[1], reverse=True)
 
     # Obtener los 4 valores más altos.
-    top_3_sales = sorted_sales[:4]
-    print(top_3_sales)
+    top_3_sales_inicial = sorted_sales[:4]
+
+    # Crear una lista con los resultados formateados
+    top_3_sales = [f"{nombre} {valor:.2f}" for nombre, valor in top_3_sales_inicial]
+    
 
     #print(solubilidad)
     return carbonato_calcio, bicarbonato_calcio, carbonato_magnesio, bicarbonato_magnesio, solubilidad,top_3_sales
@@ -493,7 +504,7 @@ def salinizacion_lavado (parametros):
     conductividad_electrica_infiltracion = (conductividad_electrica_ajustada * requerimiento_riego + 0.7 * 0.15 * lluvia_total_anual) / (requerimiento_riego + 0.7 * lluvia_total_anual)
     riego_lavado = conductividad_electrica_infiltracion / (3 * textura * tolerancia_cultivo)
     agua_extra = (riego_lavado / (1 - riego_lavado)) * 100
-    print(riego_lavado)
+   
     return riego_lavado
     
 

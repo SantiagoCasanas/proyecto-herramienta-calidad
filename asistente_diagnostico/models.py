@@ -70,6 +70,25 @@ class AfectacionDetalladaIncrustracion(models.Model):
             
             return None
 
+class SalinizacionFao(models.Model):
+    valor_minimo = models.FloatField(blank=True, null=True)
+    valor_maximo = models.FloatField(blank=True, null=True)
+    clase = models.TextField(blank=True, null=True)
+    recomendacion = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.clase} - {self.valor_minimo} - {self.valor_maximo} - {self.recomendacion}"
+    
+    @staticmethod
+    def SalinizacionFaoTabla(valor: float) -> "SalinizacionFao":
+        
+        try:
+            salinizacion_fao = SalinizacionFao.objects.filter(valor_minimo__lt=valor, valor_maximo__gte=valor).first()
+            return salinizacion_fao
+        except Exception as e:
+            
+            return None
+
 class SueloGeneral(models.Model):
 
     valor_minimo = models.FloatField(blank=True, null=True)

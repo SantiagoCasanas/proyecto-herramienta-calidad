@@ -12,6 +12,7 @@ from .forms import AfectacionGeneralForm
 from .models import Sodificacion
 from .models import Salinizacion
 from .models import AfectacionDetalladaIncrustracion
+from .models import SalinizacionFao
 
 #from django.views.generic.detail import DetailView
 from .funciones import obtener_recomendaciones_generales_infraestructura
@@ -20,6 +21,7 @@ from .funciones import sales
 from .funciones import salinizacion_lavado
 from .funciones import condicion_sodicidad
 from .funciones import anuncios
+from .funciones import indice_langelier
 
 #from django.shortcuts import render, get_object_or_404
 #from django.views import View
@@ -72,7 +74,7 @@ class ConsultarAfectacionGeneralView(FormView):
             parametros = form.cleaned_data
             context = self.get_context_data()
             
-            limite, mensaje, limite_carbonatos_numero,mensaje_carbonatos = anuncios(parametros)
+            limite, mensaje, limite_carbonatos_numero,mensaje_carbonatos, limite_ce_baja, mensaje_ce_baja, limite_ce_alta, mensaje_ce_alta = anuncios(parametros)
             
             # Generar el mensaje basado en el límite
             if limite == 1:
@@ -84,6 +86,16 @@ class ConsultarAfectacionGeneralView(FormView):
                 messages.warning(request, mensaje_carbonatos)
             else:
                 messages.success(request, mensaje_carbonatos)
+
+            if limite_ce_baja == 1:
+                messages.warning(request, mensaje_ce_baja)
+            else:
+                messages.success(request, mensaje_ce_baja)
+            
+            if limite_ce_baja == 1:
+                messages.warning(request, mensaje_ce_alta)
+            else:
+                messages.success(request, mensaje_ce_alta)
 
             
 
@@ -114,34 +126,68 @@ class ConsultarAfectacionGeneralView(FormView):
             context['afectaciones_infraestructura_dos'] = self.afectaciones_infraestructura_dos
 
             #incrustracion o corrosion 
+            """ self.indice_langelier=indice_langelier(form.cleaned_data)
+            context['indice_langelier']=self.indice_langelier
+            print(indice_langelier)  
+ """
+        
+            # Llama a la función para obtener datos adicionales
+            resultado_funcion_adicional = indice_langelier(form.cleaned_data)
+            
+            # Asegúrate de que el resultado sea un diccionario
+            if not isinstance(resultado_funcion_adicional, dict):
+                raise ValueError("La función indice_langelier debe retornar un diccionario")
+            
+            # Combina el resultado de la función con el cleaned_data del formulario
+            datos_combinados = {**form.cleaned_data, **resultado_funcion_adicional}
+            
+            # Procesa los datos combinados
             self.afectaciones_incrustracion = []
 
-            for parametros, valor in form.cleaned_data.items():
+            for parametros, valor in datos_combinados.items():
+            #for parametros, valor in {**form.cleaned_data, **resultado_funcion_adicional}.items():
                 #print(f"Procesando {parametros}: {valor}")
                 if valor is not None:  # Verifica que el valor no sea None
-                    afectacion_incrustracion = AfectacionDetalladaIncrustracion.obtener_afectacion_incrustracion(parametros, valor)
+
+                    #afectacion_incrustracion = AfectacionDetalladaIncrustracion.obtener_afectacion_incrustracion(parametros, valor)
+
+                    try:
+                        afectacion_incrustracion = AfectacionDetalladaIncrustracion.obtener_afectacion_incrustracion(parametros, valor)
+                    except Exception as e:
+                        print(f"Error al procesar {parametros} con valor {valor}: {e}")
+                        continue
+
                     if afectacion_incrustracion:
                         self.afectaciones_incrustracion.append({
                             'parametro': parametros,
                             'valor_ingresado': valor,
                             'afectacion_incrustracion': afectacion_incrustracion
                         })
+
             context['afectaciones_incrustracion'] = self.afectaciones_incrustracion
+            
+            
 
             #########SUELO 
 
             #para la recomendacion salinizacion 
+            #FAO
+            conductividad_electrica = form.cleaned_data['conductividad_electrica']
+            salinizacion_fao = SalinizacionFao.SalinizacionFaoTabla(conductividad_electrica)
+            print(salinizacion_fao)
+            context['salinizacion_fao'] = salinizacion_fao
+
             #SosalRiego
 
             riego_lavado = salinizacion_lavado(form.cleaned_data)
             self.riego_lavado_intento = salinizacion_lavado(form.cleaned_data)
             context['riego_lavado_intento'] = self.riego_lavado_intento
-            print(riego_lavado)
+            
 
             self.riego_lavado_modelo = Salinizacion.salinizacion(riego_lavado)
             context['riego_lavado_modelo'] = self.riego_lavado_modelo
             sal=self.riego_lavado_modelo
-            print(sal)
+            
 
 
             #ECHEVERRI
@@ -149,7 +195,7 @@ class ConsultarAfectacionGeneralView(FormView):
             solubilidad = self.sales_results[4]
             top_3_sales = self.sales_results[5]
             context['top_3_sales'] = top_3_sales
-
+            
             conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             self.conductividad_electrica = form.cleaned_data.get('conductividad_electrica')
             context['conductividad_electrica'] = self.conductividad_electrica
