@@ -306,7 +306,7 @@
                                     <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
                                     {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media corrosión"%}
                                     <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
-                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media inscrustación"%}
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media incrustación"%}
                                     <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
                                     {% else %}
                                     <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
@@ -490,7 +490,7 @@
                                 {% for item in afectaciones_incrustracion %}
                                     <tr>
                                         <td style="vertical-align: top;">{{ item.afectacion_incrustracion.nombre }}</td>
-                                        <td style="vertical-align: top;">{{ item.valor_ingresado }}</td>
+                                        <td style="vertical-align: top;">{{ item.valor_ingresado|floatformat:2  }}</td>
                                         <!-- <td>{{ item.afectacion_incrustracion.valor_minimo }}</td> -->
                                         <!-- <td>{{ item.afectacion_incrustracion.valor_maximo }}</td> -->
                                         <td style="text-align: justify;vertical-align: top;">{{ item.afectacion_incrustracion.nivel_peligro }}</td>

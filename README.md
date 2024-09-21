@@ -16,3 +16,10 @@ Si deseas correr de nuevo el proyecto, otro día después de descargado:
 1. Abrir gitbash en la carpeta del proyecto  (clic derecho -> abrir gitbash)
 2. Activamos el ambiente: source venv/Scripts/activate
 3. Corremos el proyecto: python manage.py runserver
+
+
+Para cargar archivos en la GitHub
+
+git add .
+git commit -m "nuevos cambios 18"
+git push origin main

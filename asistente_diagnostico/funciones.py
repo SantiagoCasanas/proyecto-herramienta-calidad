@@ -4,6 +4,7 @@ from scipy.optimize import fsolve
 #from .models import *
 from asistente_diagnostico.models import AfectacionDetalladaInfraestructura
 from scipy.optimize import root
+import math
 
 #Activamos el ambiente: source venv/Scripts/activate
 #Corremos el proyecto: python manage.py runserver
@@ -56,11 +57,11 @@ def anuncios(parametros):
         limite = 1
         mensaje = "La diferencia entre la suma de cationes y aniones es mayor al 10%. Revisar"
 
-    if conductividad > (0.06 * conductividad_limite):
+    if (0.06 * conductividad_limite) < conductividad:
         limite_ce_baja= 1
         mensaje_ce_baja = "CEr muy baja"
     
-    if conductividad < (0.12 * conductividad_limite):
+    if (0.12 * conductividad_limite) > conductividad:
         limite_ce_alta = 1
         mensaje_ce_alta = "CEr muy alta"
         
@@ -189,8 +190,18 @@ def indice_langelier(parametros):
     temperatura = parametros["temperatura"]
     alcalinidad = parametros["alcalinidad"]
     dureza = parametros["dureza"]
+    calcio = parametros["calcio"]
+    solidos_disueltos = parametros["solidos_disueltos"]
 
-    indice_langelier = temperatura+ph+alcalinidad+dureza-12.5
+
+    A = (math.log10(solidos_disueltos)-1)/10
+    B = -13.12 * math.log10(temperatura +273) + 34.55
+    C = math.log10(calcio) - 0.4
+    D = math.log10(alcalinidad)
+
+    ph_s = (9.3 + A + B) - (C + D)
+    
+    indice_langelier = ph - ph_s
     
     print(f"indice de langelier: {indice_langelier}")
     

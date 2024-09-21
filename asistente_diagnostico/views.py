@@ -92,7 +92,7 @@ class ConsultarAfectacionGeneralView(FormView):
             else:
                 messages.success(request, mensaje_ce_baja)
             
-            if limite_ce_baja == 1:
+            if limite_ce_alta == 1:
                 messages.warning(request, mensaje_ce_alta)
             else:
                 messages.success(request, mensaje_ce_alta)
