@@ -196,9 +196,13 @@ def indice_langelier(parametros):
 
 
     A = (math.log10(solidos_disueltos)-1)/10
-    B = -13.12 * math.log10(temperatura +273) + 34.55
-    C = math.log10(calcio) - 0.4
+    print(f"A: {A}")
+    B = (-13.12 * math.log10(temperatura +273)) + 34.55
+    print(f"B: {B}")
+    C = math.log10(dureza) - 0.4
+    print(f"C: {C}")
     D = math.log10(alcalinidad)
+    print(f"D: {D}")
 
     ph_s = (9.3 + A + B) - (C + D)
     
