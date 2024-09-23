@@ -302,11 +302,11 @@
                             {% for item in afectaciones_incrustracion %}
                                 {% if item.parametro == 'indice_langelier' %}
                                             
-                                    {% if item.afectacion_incrustracion.nivel_peligro == "Normal"%}
+                                    {% if item.afectacion_incrustracion.nivel_peligro == "Equilibrado pero punzante"%}
                                     <td style="background-color:rgb(4, 173, 4)"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
-                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media corrosión"%}
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligeramente corrosivo pero no forma incrustaciones"%}
                                     <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
-                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligera a media incrustación"%}
+                                    {% elif item.afectacion_incrustracion.nivel_peligro == "Ligeramente formador de incrustaciones y corrosivo"%}
                                     <td style="background-color:yellow"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
                                     {% else %}
                                     <td style="background-color:red"><p>{{item.afectacion_incrustracion.nivel_peligro}}</p></td>
@@ -508,7 +508,7 @@
 
        <!-- SUELO  -->
 
-        {% if valor_x is not None or suelo_afectacion or yeso_modelo or riego_lavado_modelo or mensaje%}
+        {% if valor_x is not None or suelo_afectacion or yeso_modelo or riego_lavado_modelo or mensaje or suelo_magnesio%}
 
             <div class="panel">
                 <div class="panel-heading" onclick="togglePanel('panel_suelo')">
@@ -663,6 +663,40 @@
                     {% else %}
                         <p>No se encontró una afectación correspondiente.</p>
                     {% endif %}
+
+                    {% if suelo_magnesio %}
+                        <h2>Peligro por magnesio</h2>
+                        <p>
+                            Peligro de magnesio   
+                        </p>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Peligro por magnesio</th>
+                                    <!-- <th>Valor Mínimo </th>
+                                    <th>Valor Máximo </th> -->
+                                    <th>Nivel de peligro</th>                                    
+                                    <th>Recomendación</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ peligro_magnesio_valor|floatformat:2  }}</td>                                                                                                   
+                                    <!-- <td>{{ riego_lavado_modelo.valor_minimo }}</td>                                
+                                    <td>{{ riego_lavado_modelo.valor_maximo }}</td>  -->                                                   
+                                    <td>{{ suelo_magnesio.nivel_peligro }}</td>                                                               
+                                    <td>{{ suelo_magnesio.recomendacion|linebreaksbr  }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h2>Peligro por magnesio</h2>
+                        <p>No se encontró una afectación correspondiente.</p>
+
+                    {% endif %}
+
          
                         
                 </div>

@@ -13,6 +13,7 @@ from .models import Sodificacion
 from .models import Salinizacion
 from .models import AfectacionDetalladaIncrustracion
 from .models import SalinizacionFao
+from .models import PeligroMagnesio
 
 #from django.views.generic.detail import DetailView
 from .funciones import obtener_recomendaciones_generales_infraestructura
@@ -22,6 +23,7 @@ from .funciones import salinizacion_lavado
 from .funciones import condicion_sodicidad
 from .funciones import anuncios
 from .funciones import indice_langelier
+from .funciones import peligro_magnesio
 
 #from django.shortcuts import render, get_object_or_404
 #from django.views import View
@@ -208,7 +210,16 @@ class ConsultarAfectacionGeneralView(FormView):
 
             suelo_afectacion = self.suelo_afectacion
 
-        
+            #Magnesium_hazard
+
+            peligro_magnesio_valor = peligro_magnesio(form.cleaned_data)
+            context['peligro_magnesio_valor']=peligro_magnesio_valor
+            print (f"peligro magnesio en views: {peligro_magnesio_valor}")
+            
+            suelo_magnesio = PeligroMagnesio.peligro_magnesio(peligro_magnesio_valor)
+            print (f"suelo_magnesio en views: {suelo_magnesio}")
+
+            context['suelo_magnesio'] = suelo_magnesio
 
 
             

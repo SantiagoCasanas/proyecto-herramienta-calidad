@@ -36,6 +36,7 @@ def anuncios(parametros):
     diferencia_relativa = (diferencia*100)/ ((suma_cationes + suma_aniones))
     
     conductividad_limite = (suma_aniones + suma_cationes)/2
+    print(conductividad_limite)
 
 
 
@@ -57,11 +58,11 @@ def anuncios(parametros):
         limite = 1
         mensaje = "La diferencia entre la suma de cationes y aniones es mayor al 10%. Revisar"
 
-    if (0.06 * conductividad_limite) < conductividad:
+    if (0.06 * conductividad_limite) > conductividad:
         limite_ce_baja= 1
         mensaje_ce_baja = "CEr muy baja"
     
-    if (0.12 * conductividad_limite) > conductividad:
+    if (0.12 * conductividad_limite) < conductividad:
         limite_ce_alta = 1
         mensaje_ce_alta = "CEr muy alta"
         
@@ -518,6 +519,15 @@ def salinizacion_lavado (parametros):
    
     return riego_lavado
     
+
+def peligro_magnesio(parametros): 
+    calcio = conversion(parametros["calcio"], 'calcio')
+    magnesio = conversion(parametros["magnesio"], 'magnesio')
+
+    mh = (magnesio*100)/(calcio+magnesio)
+    print (f"peligro magnesio: {mh}")
+
+    return mh    
 
 """ 
 def salinizacion_lavado (parametros): 

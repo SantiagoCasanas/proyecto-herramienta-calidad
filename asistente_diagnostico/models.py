@@ -182,3 +182,23 @@ class Salinizacion(models.Model):
         except Exception as e:
             
             return None
+        
+class PeligroMagnesio(models.Model):
+
+    valor_minimo = models.FloatField(blank=True, null=True)
+    valor_maximo = models.FloatField(blank=True, null=True)
+    nivel_peligro = models.TextField(blank=True, null=True)
+    recomendacion = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nivel_peligro} - {self.valor_minimo} - {self.valor_maximo} - {self.recomendacion}"
+    
+    @staticmethod
+    def peligro_magnesio(valor: float) -> "PeligroMagnesio":
+        
+        try:
+            peligro = PeligroMagnesio.objects.filter(valor_minimo__lt=valor, valor_maximo__gte=valor).first()
+            return peligro
+        except Exception as e:
+            
+            return None
