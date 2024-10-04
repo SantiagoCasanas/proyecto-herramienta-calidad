@@ -148,7 +148,28 @@ class AfectacionGeneralForm(forms.Form):
         widget=forms.NumberInput(attrs={'class': 'input-color'}),
         
     )
+
+    boro = forms.FloatField(
+        label='Boro [B] [mg/L]', 
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'input-color'}),
+        
+    )
     
+    cadmio = forms.FloatField(
+        label='Cadmio [Cd] [mg/L]', 
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'input-color'}),
+        
+    )
+
+    plomo = forms.FloatField(
+        label='Plomo [Pb] [mg/L]', 
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'input-color'}),
+        
+    )
+
     nitrogeno = forms.FloatField(
         label='Nitrógeno total (N) [mg/L]', 
         min_value=0,

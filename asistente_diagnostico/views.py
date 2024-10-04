@@ -14,6 +14,7 @@ from .models import Salinizacion
 from .models import AfectacionDetalladaIncrustracion
 from .models import SalinizacionFao
 from .models import PeligroMagnesio
+from .models import Toxicidad
 
 #from django.views.generic.detail import DetailView
 from .funciones import obtener_recomendaciones_generales_infraestructura
@@ -24,7 +25,7 @@ from .funciones import condicion_sodicidad
 from .funciones import anuncios
 from .funciones import indice_langelier
 from .funciones import peligro_magnesio
-
+from .funciones import indice_ryznar
 #from django.shortcuts import render, get_object_or_404
 #from django.views import View
 
@@ -65,8 +66,6 @@ class ConsultarAfectacionGeneralView(FormView):
             context['yeso']=self.yeso
             context['top_3_sales'] = self.top_3_sales
 
-        
-
         return context
 
     def post(self, request, *args, **kwargs):
@@ -99,7 +98,6 @@ class ConsultarAfectacionGeneralView(FormView):
             else:
                 messages.success(request, mensaje_ce_alta)
 
-            
 
             self.anuncios = anuncios(form.cleaned_data)
             context['anuncios'] = self.anuncios 
@@ -131,18 +129,25 @@ class ConsultarAfectacionGeneralView(FormView):
             """ self.indice_langelier=indice_langelier(form.cleaned_data)
             context['indice_langelier']=self.indice_langelier
             print(indice_langelier)  
- """
+            """
         
             # Llama a la función para obtener datos adicionales
             resultado_funcion_adicional = indice_langelier(form.cleaned_data)
+
+            ryznar_funcion_adicional = indice_ryznar(form.cleaned_data)
+            print(f"Índice Ryznar: {ryznar_funcion_adicional}")
             
             # Asegúrate de que el resultado sea un diccionario
             if not isinstance(resultado_funcion_adicional, dict):
                 raise ValueError("La función indice_langelier debe retornar un diccionario")
             
-            # Combina el resultado de la función con el cleaned_data del formulario
-            datos_combinados = {**form.cleaned_data, **resultado_funcion_adicional}
+            if not isinstance(ryznar_funcion_adicional, dict):
+                raise ValueError("La función indice_ryznar debe retornar un diccionario")
             
+            # Combina el resultado de la función con el cleaned_data del formulario
+            datos_combinados = {**form.cleaned_data, **resultado_funcion_adicional, **ryznar_funcion_adicional}
+            print(f"Datos combinados: {datos_combinados}")
+
             # Procesa los datos combinados
             self.afectaciones_incrustracion = []
 
@@ -176,7 +181,7 @@ class ConsultarAfectacionGeneralView(FormView):
             #FAO
             conductividad_electrica = form.cleaned_data['conductividad_electrica']
             salinizacion_fao = SalinizacionFao.SalinizacionFaoTabla(conductividad_electrica)
-            print(salinizacion_fao)
+            #print(salinizacion_fao)
             context['salinizacion_fao'] = salinizacion_fao
 
             #SosalRiego
@@ -214,10 +219,10 @@ class ConsultarAfectacionGeneralView(FormView):
 
             peligro_magnesio_valor = peligro_magnesio(form.cleaned_data)
             context['peligro_magnesio_valor']=peligro_magnesio_valor
-            print (f"peligro magnesio en views: {peligro_magnesio_valor}")
+            #print (f"peligro magnesio en views: {peligro_magnesio_valor}")
             
             suelo_magnesio = PeligroMagnesio.peligro_magnesio(peligro_magnesio_valor)
-            print (f"suelo_magnesio en views: {suelo_magnesio}")
+            #print (f"suelo_magnesio en views: {suelo_magnesio}")
 
             context['suelo_magnesio'] = suelo_magnesio
 
@@ -252,7 +257,27 @@ class ConsultarAfectacionGeneralView(FormView):
                 #context['mensaje'] = "Recomendación: Aplicar enmiendas."
 
 
+            """ Toxicidad """
 
+            self.toxicidad_panel = []
+
+            for parametros, valor in form.cleaned_data.items():
+                if valor is not None:  # Verifica que el valor no sea None
+                    toxicidad_panel = Toxicidad.toxicidad_planta(parametros, valor)
+                    if toxicidad_panel:
+                        self.toxicidad_panel.append({
+                            'parametro': parametros,
+                            'valor_ingresado': valor,
+                            'afectacion': toxicidad_panel
+                        })
+            context['toxicidad_panel_1'] = self.toxicidad_panel
+            print(f"Toxicidad: {self.toxicidad_panel}")
+
+            # self.toxicidad_panel = Toxicidad.toxicidad_planta(form.cleaned_data)
+            # toxicidad_panel = Toxicidad.toxicidad_planta(form.cleaned_data)
+            
+            # print(f"peligro magnesio en views: {self.toxicidad_panel}")
+            # context['toxicidad_panel'] = self.toxicidad_panel
 
 
 

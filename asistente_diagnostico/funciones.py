@@ -199,7 +199,7 @@ def indice_langelier(parametros):
     print(f"A: {A}")
     B = (-13.12 * math.log10(temperatura +273)) + 34.55
     print(f"B: {B}")
-    C = math.log10(dureza) - 0.4
+    C = math.log10(2.5*calcio) - 0.4
     print(f"C: {C}")
     D = math.log10(alcalinidad)
     print(f"D: {D}")
@@ -211,6 +211,33 @@ def indice_langelier(parametros):
     print(f"indice de langelier: {indice_langelier}")
     
     return {"indice_langelier": indice_langelier}
+
+
+def indice_ryznar(parametros):
+
+    ph = parametros["ph"]
+    temperatura = parametros["temperatura"]
+    alcalinidad = parametros["alcalinidad"]
+    dureza = parametros["dureza"]
+    calcio = parametros["calcio"]
+    solidos_disueltos = parametros["solidos_disueltos"]
+
+
+    A = (math.log10(solidos_disueltos)-1)/10
+    print(f"A: {A}")
+    B = (-13.12 * math.log10(temperatura +273)) + 34.55
+    print(f"B: {B}")
+    C = math.log10(2.5*calcio) - 0.4
+    print(f"C: {C}")
+    D = math.log10(alcalinidad)
+    print(f"D: {D}")
+
+    ph_s = (9.3 + A + B) - (C + D)
+    
+    indice_ryznar = 2*ph_s - ph
+    
+    print(f"Índice Ryznar: {indice_ryznar}")
+    return {'indice_ryznar': indice_ryznar}
 
 #SUELO
 

@@ -673,7 +673,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Peligro por magnesio</th>
+                                    <th>Peligro por magnesio [%]</th>
                                     <!-- <th>Valor Mínimo </th>
                                     <th>Valor Máximo </th> -->
                                     <th>Nivel de peligro</th>                                    
@@ -696,13 +696,55 @@
                         <p>No se encontró una afectación correspondiente.</p>
 
                     {% endif %}
-
          
                         
                 </div>
            
             </div>    
+        {% endif %}
 
+        {% if toxicidad_panel_1 is not None %}
+            <div class="panel">
+                
+                <div class="panel-heading" onclick="togglePanel('panel_toxicidad')">
+                    Peligro potencial en los cultivos
+                </div>
+                <div id="panel_toxicidad" class="panel-body">
+                    {% if toxicidad_panel_1 is not None %}
+                        <h2>Toxicidad de cultivos</h2>
+                        <p>
+                            Toxicidad.
+                        </p>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Párametro</th>
+                                    <th>Valor ingresado</th>
+                                    <th>Nivel de peligro</th>
+                                    <th>Recomendación</th>
+                                </tr>
+                            </thead>
+                            {% for item in toxicidad_panel_1 %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ item.afectacion.nombre }}</td>
+                                    <td>{{ item.valor_ingresado }}</td>
+                                    <td>{{ item.afectacion.nivel_peligro }}</td>
+                                    <td>{{ item.afectacion.recomendacion }}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+
+                        </table>
+
+                    {% else %}
+                        <h2>Toxicidad</h2>
+                        <p>No.</p>
+                    
+                    {% endif %}
+                </div>
+            </div>
         {% endif %}
 
         <!-- <div class="panel-heading" onclick="togglePanel('panel_normativa')">
